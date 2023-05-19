@@ -58,7 +58,17 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
+   background-image: linear-gradient(315deg, #7ee7fa85 0%, #80ff723b 74%),
+      url(../assets/bgc.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: left;
+   width: 80vw;
+   margin: 0 auto;
+   margin-top: 20px;
+   border-radius: 20px;
 }
+
 .login__panel {
    margin: 0 auto;
    margin-top: 30px;
@@ -68,8 +78,8 @@ export default {
    border-radius: 20px;
    background: radial-gradient(
       circle,
-      rgba(75, 197, 153, 0.7763480392156863) 0%,
-      rgba(75, 197, 153, 1) 100%
+      rgba(75, 197, 152, 0.555) 0%,
+      rgba(75, 197, 152, 0.795) 100%
    );
 }
 form {
