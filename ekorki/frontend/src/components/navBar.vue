@@ -22,30 +22,32 @@ export default {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   font-size: 10px;
 }
 .navbar {
    width: 100vw;
-   height: 60px;
+   height: 6rem;
    background-color: rgba(75, 197, 153, 1);
    display: grid;
    grid-template-columns: 1fr 1fr;
 }
 .logo {
    display: grid;
-   grid-template-columns: 100px 1fr;
+   grid-template-columns: 10rem 1fr;
 }
 
 .logo__text {
-   margin-left: 15px;
-   padding: 10px;
+   margin-left: 1.5rem;
+   padding: 1rem;
    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+   font-size: 3.2rem;
 }
 .nav__logo {
-   margin-left: 20px;
-   padding: 10px;
-   height: 60px;
-   width: 100px;
-   padding: 10px;
+   margin-left: 2rem;
+   padding: 1rem;
+   height: 6rem;
+   width: 10rem;
+   padding: 1rem;
    border-radius: 50%;
    background-color: transparent;
 }
@@ -55,22 +57,22 @@ export default {
 }
 .register {
    cursor: pointer;
-   margin: 15px;
-   width: 150px;
-   height: 30px;
-   margin-right: 10px;
+   margin: 1.5rem;
+   width: 15rem;
+   height: 3rem;
+   margin-right: 1rem;
    background-color: transparent;
-   border: 2px solid #000000;
-   border-radius: 99px;
+   border: 0.2rem solid #000000;
+   border-radius: 9.9rem;
    font-weight: bold;
    transition: 0.1s ease-in-out;
 }
 .login {
    cursor: pointer;
-   margin: 15px;
-   width: 150px;
-   height: 30px;
-   margin-left: 10px;
+   margin: 1.5rem;
+   width: 15rem;
+   height: 3rem;
+   margin-left: 1rem;
    background-color: black;
    border: 2px solid #000000;
    border-radius: 99px;
