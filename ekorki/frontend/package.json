@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.3.0",
     "vue": "^3.0.0",
     "vue-router": "^4.2.1",
     "vuex": "^4.1.0"
