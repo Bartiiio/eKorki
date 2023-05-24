@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
    margin: 0;
    padding: 0;
@@ -45,6 +45,10 @@ export default {
    margin-left: 15px;
    padding: 10px;
    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+   & a {
+      text-decoration: none;
+      color: inherit;
+   }
 }
 .nav__logo {
    margin-left: 20px;
@@ -70,6 +74,10 @@ export default {
    border-radius: 99px;
    font-weight: bold;
    transition: 0.1s ease-in-out;
+   & a {
+      text-decoration: none;
+      color: inherit;
+   }
 }
 .login {
    cursor: pointer;
@@ -83,6 +91,10 @@ export default {
    color: white;
    font-weight: bold;
    transition: 0.1s ease-in-out;
+   & a {
+      text-decoration: none;
+      color: inherit;
+   }
 }
 .register:hover {
    color: white;

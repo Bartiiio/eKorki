@@ -1,15 +1,19 @@
 <template>
-   <li>
-      <h3>{{ fullName }}</h3>
-      <h4>${{ rate }}/godzina</h4>
-      <div>
-         <span v-for="area in areas" :key="area">{{ area }}</span>
-      </div>
-      <div class="actions">
-         <router-link :to="coachContactLink">Kontakt</router-link>
-         <router-link :to="coachDetailsLink">Szczegóły</router-link>
-      </div>
-   </li>
+   <div class="listof">
+      <li>
+         <div class="aboutUser">
+            <h3>{{ fullName }}</h3>
+            <h4>${{ rate }}/godzina</h4>
+            <div>
+               <span v-for="area in areas" :key="area">{{ area }}</span>
+            </div>
+         </div>
+         <div class="actionsUser">
+            <router-link :to="coachContactLink">Kontakt</router-link>
+            <router-link :to="coachDetailsLink">Szczegóły</router-link>
+         </div>
+      </li>
+   </div>
 </template>
 
 <script>
@@ -30,24 +34,35 @@ export default {
 </script>
 
 <style lang="scss">
-li {
-   margin: 1rem 0;
-   border: 1px solid #424242;
-   border-radius: 12px;
-   padding: 1rem;
-}
-
-h3 {
-   font-size: 1.5rem;
-}
-
-h3,
-h4 {
-   margin: 0.5rem 0;
-}
-
-.actions {
-   display: flex;
-   justify-content: flex-end;
+.listof {
+   width: 60vw;
+   margin: 0 auto;
+   margin-top: 15px;
+   padding: 15px;
+   border-radius: 10px;
+   box-shadow: 0px 0px 3px 1px rgba(66, 68, 90, 1);
+   & li {
+      display: flex;
+      & .aboutUser {
+         width: 100%;
+      }
+      & .actionsUser {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         & a {
+            text-align: center;
+            width: 120px;
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid black;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            font-size: 15px;
+            font-weight: bold;
+         }
+      }
+   }
 }
 </style>
