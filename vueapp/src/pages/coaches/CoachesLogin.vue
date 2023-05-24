@@ -93,7 +93,7 @@ form {
 .zalogujsie {
    display: flex;
    justify-content: flex-end;
-   align-items: start;
+   align-items: flex-start;
    flex-direction: column;
 }
 .zalogujsie h1 {
@@ -109,7 +109,7 @@ form {
 .inputEmail {
    display: flex;
    justify-content: center;
-   align-items: end;
+   align-items: flex-end;
    width: 100%;
 }
 .passwordInput {
@@ -153,7 +153,7 @@ form {
 .logIn {
    display: flex;
    justify-content: center;
-   align-items: start;
+   align-items: flex-start;
    width: 100%;
 }
 .logIn button {
