@@ -14,6 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("fe",
+        pb => pb.WithOrigins("https://localhost:5003").AllowCredentials().AllowAnyMethod().AllowAnyHeader());
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EKorkiDatabase")));
 builder.Services.Configure<IdentityOptions>(options =>
@@ -49,6 +55,7 @@ builder.Services.AddTransient<IClaimsService, ClaimsService>();
 builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();
 var app = builder.Build();
 
+app.UseCors("fe");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

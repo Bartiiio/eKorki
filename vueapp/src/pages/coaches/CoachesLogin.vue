@@ -29,7 +29,7 @@
                   <p class="forget">Nie pamiętasz hasła?</p>
                </div>
                <div class="logIn">
-                  <button>Zaloguj się</button>
+                  <button @click="onSubmit({username: 'fipis14@gmail.com', password: 'Abc12#'}, {})">Zaloguj się</button>
                </div>
                <div class="signIn">
                   <p>Nie masz konta?</p>
@@ -42,9 +42,19 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/store';
 export default {
    name: "loginPanel",
+   methods: {
+      onSubmit(values) {
+         const authStore = useAuthStore();
+         const { username, password } = values;
+         return authStore.login(username, password)
+            .catch(error => console.log(error));
+      }
+   }
 };
+
 </script>
 
 <style>

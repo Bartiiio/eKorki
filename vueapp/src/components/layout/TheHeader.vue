@@ -7,19 +7,31 @@
          </h1>
       </div>
       <div class="logins">
-         <button class="register">
+         <button class="register"  v-if="!isLoggedIn">
             <router-link to="/register">Rejestracja</router-link>
          </button>
-         <button class="login">
+         <button class="login"  v-if="!isLoggedIn">
             <router-link to="/login">Logowanie</router-link>
          </button>
+         <button class="login"  v-if="isLoggedIn" @click="logout()">Wyloguj</button>
       </div>
    </div>
 </template>
 
 <script>
+import { useAuthStore } from '@/store';
 export default {
    name: "navBar",
+   computed: {
+      isLoggedIn() {
+         return useAuthStore()?.isLoggedIn;
+      }
+   },
+   methods: {
+      logout() {
+         useAuthStore().logout();
+      }
+   }
 };
 </script>
 
