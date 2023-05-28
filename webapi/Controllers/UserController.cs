@@ -38,8 +38,8 @@ public class UserController : ControllerBase
  
         ApplicationUser newUser = new()
         {
+            UserName = userRegisterDTO.Name,
             Email = userRegisterDTO.Email,
-            UserName = userRegisterDTO.Email,
             SecurityStamp = Guid.NewGuid().ToString(),
         };
  
@@ -52,10 +52,12 @@ public class UserController : ControllerBase
                 Errors = result.Errors.Select(e => e.Description)
             });
  
-        await SeedRoles();
-        result = await _userManager.AddToRoleAsync(newUser, UserRoles.User);
- 
-        return CreatedAtAction(nameof(Register), new UserRegisterResultDTO { Succeeded = true });
+        var token = await GetToken(newUser);
+        return Ok(new UserLoginResultDTO
+        {
+            Succeeded = true,
+            Token = token
+        });
     }
     
     [HttpPost]
@@ -68,18 +70,11 @@ public class UserController : ControllerBase
  
         if (user != null && await _userManager.CheckPasswordAsync(user, userLoginDTO.Password))
         {
-            var userClaims = await _claimsService.GetUserClaimsAsync(user);
- 
-            var token = _jwtTokenService.GetJwtToken(userClaims);
- 
+            var token = await GetToken(user);
             return Ok(new UserLoginResultDTO
             {
                 Succeeded = true,
-                Token = new TokenDTO
-                {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo
-                }
+                Token = token
             });
         }
  
@@ -89,7 +84,20 @@ public class UserController : ControllerBase
             Message = "The email and password combination was invalid."
         });
     }
-    
+
+    private async Task<TokenDTO> GetToken(ApplicationUser user)
+    {
+        var userClaims = await _claimsService.GetUserClaimsAsync(user);
+
+        var token = _jwtTokenService.GetJwtToken(userClaims);
+        var tokenDto = new TokenDTO
+        {
+            Token = new JwtSecurityTokenHandler().WriteToken(token),
+            Expiration = token.ValidTo
+        };
+        return tokenDto;
+    }
+
     private async Task SeedRoles()
     {
         if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))

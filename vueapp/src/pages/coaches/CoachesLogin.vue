@@ -1,7 +1,7 @@
 <template>
    <div class="login_panel_main">
       <div class="login__panel">
-         <form action="">
+         <form @submit.prevent="onSubmit">
             <div class="columns">
                <div class="zalogujsie">
                   <h1>Zaloguj się!</h1>
@@ -9,6 +9,7 @@
                </div>
                <div class="inputEmail">
                   <input
+                     v-model.trim="email"
                      class="email"
                      type="email"
                      placeholder="E-mail"
@@ -17,6 +18,7 @@
                </div>
                <div class="passwordInput">
                   <input
+                     v-model.trim="password"
                      class="password"
                      type="password"
                      placeholder="Hasło"
@@ -29,7 +31,7 @@
                   <p class="forget">Nie pamiętasz hasła?</p>
                </div>
                <div class="logIn">
-                  <button @click="onSubmit({username: 'fipis14@gmail.com', password: 'Abc12#'}, {})">Zaloguj się</button>
+                  <button type="submit">Zaloguj się</button>
                </div>
                <div class="signIn">
                   <p>Nie masz konta?</p>
@@ -43,12 +45,15 @@
 
 <script setup>
 import { useAuthStore } from '@/store';
+import { ref } from 'vue';
 
+const email = ref('');
+const password = ref('');
 const authStore = useAuthStore();
 const { login } = authStore;
-function onSubmit(values) {
-   const { username, password } = values;
-   return login(username, password)
+
+function onSubmit() {
+   return login(email.value, password.value)
       .catch(error => console.log(error));
 }
 </script>

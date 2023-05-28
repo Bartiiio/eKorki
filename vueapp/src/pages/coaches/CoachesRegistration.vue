@@ -54,6 +54,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useAuthStore } from '@/store';
 
 const userName = ref('');
 const email = ref('');
@@ -61,16 +62,12 @@ const password = ref('');
 const repeatPassword = ref('');
 const checkbox = ref(false);
 
+const authStore = useAuthStore();
+const { register } = authStore; 
+
 function submitForm() {
   if (checkbox.value && password.value === repeatPassword.value) {
-    const formData = {
-      user: userName.value,
-      email: email.value,
-      password: password.value,
-      repeatPassword: repeatPassword.value,
-      checkbox: checkbox.value,
-    };
-    console.log(formData);
+    register(email.value, userName.value, password.value);
   } else {
     if (checkbox.value) {
       alert('Passwords do not match!');

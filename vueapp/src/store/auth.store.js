@@ -23,6 +23,16 @@ export const useAuthStore = defineStore({
 
             router.push(this.returnUrl || '/');
         },
+        async register(email, username, password) {
+            const user = await fetchWrapper.post(`${baseUrl}/register`, { email: email, name: username, password: password });
+
+            this.user = user;
+            this.isLoggedIn = true;
+
+            localStorage.setItem('user', JSON.stringify(user));
+
+            router.push(this.returnUrl || '/');
+        },
         logout() {
             this.user = null;
             this.isLoggedIn = false;
