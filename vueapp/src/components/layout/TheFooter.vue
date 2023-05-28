@@ -36,7 +36,7 @@ export default {
 .footerComp {
    margin-top: 15px;
    background-color: rgba(29, 109, 203, 1);
-   position: absolute;
+   position: fixed;
    width: 100vw;
    height: auto;
    bottom: 0;
