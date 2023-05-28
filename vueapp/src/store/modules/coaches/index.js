@@ -16,7 +16,7 @@ export default {
                       areas: ['Matematyka'],
                       description:
                         "Lubie matme wbij na korki",
-                      hourlyRate: 50
+                      hourlyRate: 50,
                     },
                     {
                       id: 'c2',
@@ -25,7 +25,8 @@ export default {
                       areas: ['Angielski'],
                       description:
                         ' I can help you get your first job',
-                      hourlyRate: 80
+                      hourlyRate: 80,
+
                     }
                   
             ]

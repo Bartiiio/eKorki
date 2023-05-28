@@ -7,13 +7,19 @@
          </h1>
       </div>
       <div class="logins">
-         <button class="register"  v-if="!isLoggedIn">
-            <router-link to="/register">Rejestracja</router-link>
+         <router-link to="/register" v-if="!isLoggedIn">
+            <button class="register">
+               Rejestracja
+            </button>
+         </router-link>
+         <router-link to="/login" v-if="!isLoggedIn">
+            <button class="login">
+               Logowanie
+            </button>
+         </router-link>
+         <button class="login"  v-if="isLoggedIn" @click="logout()">
+            Wyloguj
          </button>
-         <button class="login"  v-if="!isLoggedIn">
-            <router-link to="/login">Logowanie</router-link>
-         </button>
-         <button class="login"  v-if="isLoggedIn" @click="logout()">Wyloguj</button>
       </div>
    </div>
 </template>
