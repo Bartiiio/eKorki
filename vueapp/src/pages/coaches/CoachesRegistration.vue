@@ -1,30 +1,50 @@
 <template>
    <div class="login_panel_main">
       <div class="login__panel">
-         <form action="">
+         <form @submit.prevent="submitForm">
             <div class="registerColumns">
                <div class="zalogujsie">
                   <h1>Zarejestruj się!</h1>
-                  <h2>Dołącz do nas i znajdz korepetytora!</h2>
+                  <h2>Dołącz do nas i znajdź korepetytora!</h2>
                </div>
                <div class="createUsername">
-                  <input type="text" placeholder="Nazwa użytkownika" required />
+                  <input
+                     type="text"
+                     v-model.trim="userName"
+                     placeholder="Nazwa użytkownika"
+                     required
+                  />
                </div>
                <div class="typeEmail">
-                  <input type="email" placeholder="E-mail" required />
+                  <input
+                     type="email"
+                     v-model.trim="email"
+                     placeholder="E-mail"
+                     required
+                  />
                </div>
                <div class="createPassword">
-                  <input type="password" placeholder="Hasło" required />
+                  <input
+                     type="password"
+                     v-model.trim="password"
+                     placeholder="Hasło"
+                     required
+                  />
                </div>
                <div class="repeatPassword">
-                  <input type="password" placeholder="Powtórz hasło" required />
+                  <input
+                     type="password"
+                     v-model.trim="repeatPassword"
+                     placeholder="Powtórz hasło"
+                     required
+                  />
                </div>
                <div class="acceptStatute">
-                  <input type="checkbox" />
+                  <input type="checkbox" v-model="checkbox" />
                   <p>Akceptuję regulamin i politykę prywatności</p>
                </div>
                <div class="createAccount">
-                  <button>Utwórz konto!</button>
+                  <button type="submit">Utwórz konto!</button>
                </div>
             </div>
          </form>
@@ -35,6 +55,35 @@
 <script>
 export default {
    name: "loginPanel",
+   data() {
+      return {
+         userName: "",
+         email: "",
+         password: "",
+         repeatPassword: "",
+         checkbox: false,
+      };
+   },
+   methods: {
+      submitForm() {
+         if (this.checkbox && this.password === this.repeatPassword) {
+            const formData = {
+               user: this.userName,
+               email: this.email,
+               password: this.password,
+               repeatPassword: this.repeatPassword,
+               checkbox: this.checkbox,
+            };
+            console.log(formData);
+         } else {
+            if (this.checkbox) {
+               alert("Podane hasła różnią się!");
+            } else {
+               alert("Nie zaakceptowano regulaminu i polityki prywatności");
+            }
+         }
+      },
+   },
 };
 </script>
 
