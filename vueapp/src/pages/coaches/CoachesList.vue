@@ -5,11 +5,25 @@
          <base-card>
             <div class="controls">
                <base-button mode="outline">Odśwież</base-button>
-               <router-link mode="outline" to="/post">Dodaj ogłoszenie</router-link>
+               <router-link mode="outline" to="/post"
+                  >Dodaj ogłoszenie</router-link
+               >
             </div>
             <ul v-if="hasCoaches">
+<<<<<<< HEAD
+               <coach-item
+                  v-for="coach in filteredCoaches"
+                  :key="coach.id"
+                  :id="coach.id"
+                  :first-name="coach.firstName"
+                  :last-name="coach.lastName"
+                  :rate="coach.hourlyRate"
+                  :areas="coach.areas"
+               >
+=======
                <coach-item v-for="coach in coaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
                   :last-name="coach.lastName" :rate="coach.hourlyRate" :areas="coach.areas">
+>>>>>>> bef75e2e925622f956007bf2fa31de8a697d5c91
                </coach-item>
             </ul>
             <h3 v-else>Brak korepetytorów</h3>
