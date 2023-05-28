@@ -10,6 +10,7 @@
                >
             </div>
             <ul v-if="hasCoaches">
+<<<<<<< HEAD
                <coach-item
                   v-for="coach in filteredCoaches"
                   :key="coach.id"
@@ -19,6 +20,10 @@
                   :rate="coach.hourlyRate"
                   :areas="coach.areas"
                >
+=======
+               <coach-item v-for="coach in coaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
+                  :last-name="coach.lastName" :rate="coach.hourlyRate" :areas="coach.areas">
+>>>>>>> bef75e2e925622f956007bf2fa31de8a697d5c91
                </coach-item>
             </ul>
             <h3 v-else>Brak korepetytorów</h3>
@@ -27,21 +32,13 @@
    </div>
 </template>
 
-<script>
+<script setup>
 import CoachItem from "../../components/coaches/CoachItem.vue";
-export default {
-   components: {
-      CoachItem,
-   },
-   computed: {
-      filteredCoaches() {
-         return this.$store.getters["coaches/coaches"];
-      },
-      hasCoaches() {
-         return this.$store.getters["coaches/hasCoaches"];
-      },
-   },
-};
+import { useCoachStore } from "@/store/coaches.store";
+import { storeToRefs } from 'pinia';
+const store = useCoachStore();
+const { coaches } = storeToRefs(store);
+const { hasCoaches } = store;
 </script>
 
 <style>

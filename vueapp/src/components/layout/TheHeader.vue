@@ -24,21 +24,12 @@
    </div>
 </template>
 
-<script>
+<script setup>
 import { useAuthStore } from '@/store';
-export default {
-   name: "navBar",
-   computed: {
-      isLoggedIn() {
-         return useAuthStore()?.isLoggedIn;
-      }
-   },
-   methods: {
-      logout() {
-         useAuthStore().logout();
-      }
-   }
-};
+import { storeToRefs } from 'pinia';
+const store = useAuthStore();
+const { isLoggedIn } = storeToRefs(store)
+const { logout } = store;
 </script>
 
 <style lang="scss">

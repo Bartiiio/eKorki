@@ -1,10 +1,7 @@
-import mutations from './mutations.js';
-import actions from './actions.js';
-import getters from './getters.js';
+import { defineStore } from 'pinia';
 
-
-export default {
-    namespaced: true,
+export const useCoachStore = defineStore({
+    id: 'coach',
     state(){
         return {
             coaches: [
@@ -32,7 +29,21 @@ export default {
             ]
         };
     },
-    mutations,
-    actions,
-    getters,
-}
+    actions: {
+        contactCoach(context, payload){
+            const newRequest = {
+                id: new Date().toISOString(),
+                coachId: payload.coachId,
+                userEmail: payload.email,
+                message: payload.message
+            };
+            context.commit('addRequest', newRequest)
+        }
+    },
+    getters: {
+        hasCoaches() {
+            return this.coaches && this.coaches.length > 0;
+        }
+    }
+
+});

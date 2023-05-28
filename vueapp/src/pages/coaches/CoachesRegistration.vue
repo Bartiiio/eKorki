@@ -52,40 +52,35 @@
    </div>
 </template>
 
-<script>
-export default {
-   name: "loginPanel",
-   data() {
-      return {
-         userName: "",
-         email: "",
-         password: "",
-         repeatPassword: "",
-         checkbox: false,
-      };
-   },
-   methods: {
-      submitForm() {
-         if (this.checkbox && this.password === this.repeatPassword) {
-            const formData = {
-               user: this.userName,
-               email: this.email,
-               password: this.password,
-               repeatPassword: this.repeatPassword,
-               checkbox: this.checkbox,
-            };
-            console.log(formData);
-         } else {
-            if (this.checkbox) {
-               alert("Podane hasła różnią się!");
-            } else {
-               alert("Nie zaakceptowano regulaminu i polityki prywatności");
-            }
-         }
-      },
-   },
-};
+<script setup>
+import { ref } from 'vue';
+
+const userName = ref('');
+const email = ref('');
+const password = ref('');
+const repeatPassword = ref('');
+const checkbox = ref(false);
+
+function submitForm() {
+  if (checkbox.value && password.value === repeatPassword.value) {
+    const formData = {
+      user: userName.value,
+      email: email.value,
+      password: password.value,
+      repeatPassword: repeatPassword.value,
+      checkbox: checkbox.value,
+    };
+    console.log(formData);
+  } else {
+    if (checkbox.value) {
+      alert('Passwords do not match!');
+    } else {
+      alert('Terms and privacy policy have not been accepted');
+    }
+  }
+}
 </script>
+
 
 <style lang="scss">
 * {
