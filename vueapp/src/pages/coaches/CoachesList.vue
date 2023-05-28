@@ -10,9 +10,8 @@
                >
             </div>
             <ul v-if="hasCoaches">
-<<<<<<< HEAD
                <coach-item
-                  v-for="coach in filteredCoaches"
+                  v-for="coach in coaches"
                   :key="coach.id"
                   :id="coach.id"
                   :first-name="coach.firstName"
@@ -20,10 +19,6 @@
                   :rate="coach.hourlyRate"
                   :areas="coach.areas"
                >
-=======
-               <coach-item v-for="coach in coaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
-                  :last-name="coach.lastName" :rate="coach.hourlyRate" :areas="coach.areas">
->>>>>>> bef75e2e925622f956007bf2fa31de8a697d5c91
                </coach-item>
             </ul>
             <h3 v-else>Brak korepetytorów</h3>
