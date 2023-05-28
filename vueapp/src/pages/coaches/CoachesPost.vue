@@ -7,20 +7,15 @@
     </section>
 </template>
 
-<script>
+<script setup>
 import CoachForm from '../../components/coaches/CoachForm.vue';
+import { useCoachStore } from '@/store/coaches.store';
 
-export default {
-    components: {
-        CoachForm
-    },
-    methods: {
-        saveData(data) {
-            this.$store.dispatch('coaches/postCoach', data);
-            this.$router.replace('/coaches');
-        }
-    }
+const coachStore = useCoachStore();
+const { postCoach } = coachStore;
+
+function saveData(data) {
+    postCoach(data)
+    this.$router.replace('/coaches');
 }
-
-
 </script>

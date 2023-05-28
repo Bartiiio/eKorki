@@ -8,7 +8,7 @@
                <router-link mode="outline" to="/post">Dodaj ogłoszenie</router-link>
             </div>
             <ul v-if="hasCoaches">
-               <coach-item v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
+               <coach-item v-for="coach in coaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
                   :last-name="coach.lastName" :rate="coach.hourlyRate" :areas="coach.areas">
                </coach-item>
             </ul>
@@ -18,21 +18,13 @@
    </div>
 </template>
 
-<script>
+<script setup>
 import CoachItem from "../../components/coaches/CoachItem.vue";
-export default {
-   components: {
-      CoachItem,
-   },
-   computed: {
-      filteredCoaches() {
-         return this.$store.getters["coaches/coaches"];
-      },
-      hasCoaches() {
-         return this.$store.getters["coaches/hasCoaches"];
-      },
-   },
-};
+import { useCoachStore } from "@/store/coaches.store";
+import { storeToRefs } from 'pinia';
+const store = useCoachStore();
+const { coaches } = storeToRefs(store);
+const { hasCoaches } = store;
 </script>
 
 <style>

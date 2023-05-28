@@ -33,7 +33,7 @@
                </div>
                <div class="signIn">
                   <p>Nie masz konta?</p>
-                  <router-link to="/register"> <p>Zarejestruj się!</p></router-link>
+                  <p>Zarejestruj się!</p>
                </div>
             </div>
          </form>
@@ -41,20 +41,16 @@
    </div>
 </template>
 
-<script>
+<script setup>
 import { useAuthStore } from '@/store';
-export default {
-   name: "loginPanel",
-   methods: {
-      onSubmit(values) {
-         const authStore = useAuthStore();
-         const { username, password } = values;
-         return authStore.login(username, password)
-            .catch(error => console.log(error));
-      }
-   }
-};
 
+const authStore = useAuthStore();
+const { login } = authStore;
+function onSubmit(values) {
+   const { username, password } = values;
+   return login(username, password)
+      .catch(error => console.log(error));
+}
 </script>
 
 <style>
