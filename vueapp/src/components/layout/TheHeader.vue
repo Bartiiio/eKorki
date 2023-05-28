@@ -7,12 +7,12 @@
          </h1>
       </div>
       <div class="logins">
-         <button class="register">
-            <router-link to="/register">Rejestracja</router-link>
-         </button>
-         <button class="login">
-            <router-link to="/login">Logowanie</router-link>
-         </button>
+         <router-link to="/register"> <button class="register">
+           Rejestracja
+         </button></router-link>
+         <router-link to="/login">  <button class="login">
+            Logowanie
+         </button></router-link>
       </div>
    </div>
 </template>
