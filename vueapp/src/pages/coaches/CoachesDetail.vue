@@ -29,7 +29,7 @@ const router = useRouter();
 const selectedCoach = ref(null);
 const coachStore = useCoachStore();
 
-selectedCoach.value = coachStore.coaches.find(coach => coach.id === props.id);
+selectedCoach.value = coachStore.getCoach(props.id);
 const fullName = computed(() => {
    return selectedCoach.value ? `${selectedCoach.value.firstName} ${selectedCoach.value.lastName}` : '';
 });

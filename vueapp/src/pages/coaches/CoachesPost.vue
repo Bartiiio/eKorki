@@ -17,7 +17,15 @@ const { postCoach } = coachStore;
 const router = useRouter();
 
 function saveData(data) {
-    postCoach(data)
+    const coachData = {
+          id: 'c3',
+          firstName: data.first,
+          lastName: data.last,
+          description: data.desc,
+          hourlyRate: data.rate,
+          areas: data.areas
+    }
+    postCoach(coachData)
     router.replace('/coaches');
 }
 </script>
