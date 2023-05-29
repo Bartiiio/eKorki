@@ -8,14 +8,16 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import CoachForm from '../../components/coaches/CoachForm.vue';
 import { useCoachStore } from '@/store/coaches.store';
 
 const coachStore = useCoachStore();
 const { postCoach } = coachStore;
+const router = useRouter();
 
 function saveData(data) {
     postCoach(data)
-    this.$router.replace('/coaches');
+    router.replace('/coaches');
 }
 </script>

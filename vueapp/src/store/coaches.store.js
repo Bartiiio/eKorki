@@ -30,15 +30,26 @@ export const useCoachStore = defineStore({
         };
     },
     actions: {
-        contactCoach(context, payload){
-            const newRequest = {
-                id: new Date().toISOString(),
-                coachId: payload.coachId,
-                userEmail: payload.email,
-                message: payload.message
-            };
-            context.commit('addRequest', newRequest)
+      contactCoach(context, payload){
+          const newRequest = {
+              id: new Date().toISOString(),
+              coachId: payload.coachId,
+              userEmail: payload.email,
+              message: payload.message
+          };
+          context.commit('addRequest', newRequest)
+      },
+      postCoach(data) {
+        const coachData = {
+          id: 'c3',
+          firstName: data.first,
+          lastName: data.last,
+          description: data.desc,
+          hourlyRate: data.rate,
+          areas: data.areas
         }
+        this.coaches.push(coachData);
+      }
     },
     getters: {
         hasCoaches() {
