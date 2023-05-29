@@ -35,7 +35,7 @@
                </div>
                <div class="signIn">
                   <p>Nie masz konta?</p>
-                  <p>Zarejestruj się!</p>
+                  <router-link to="/register"> <p>Zarejestruj się!</p></router-link>
                </div>
             </div>
          </form>
