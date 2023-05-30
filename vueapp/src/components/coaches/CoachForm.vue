@@ -17,8 +17,19 @@
             <input type="number" id="rate" v-model.trim="rate">
         </div>
         <div class="form-control">
-            <label for="areas">Przedmiot</label>
-            <input type="text" id="areas" v-model.trim="areas">
+            <h3>Przedmiot</h3>
+            <div>
+                <input type="checkbox" id="Matematyka" value="Matematyka" v-model="areas">
+                <label for="Matematyka">Matematyka</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Geografia" value="Geografia" v-model="areas">
+                <label for="Geografia">Geografia</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Fizyka" value="Fizyka" v-model="areas">
+                <label for="Fizyka">Fizyka</label>
+            </div>
         </div>
         <base-button>Dodaj ogłoszenie</base-button>
     </form>
@@ -26,14 +37,14 @@
 
 <script>
 export default {
-    emits:['save-data'],
+    emits: ['save-data'],
     data() {
         return {
             firstName: '',
             lastName: '',
             description: '',
             rate: null,
-            areas: '',
+            areas: [],
         };
     },
     methods: {

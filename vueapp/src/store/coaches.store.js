@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 
 export const useCoachStore = defineStore({
-  id: 'coach',
-  state(){
+  id: 'coaches',
+  state() {
     return {
       coaches: [
         {
@@ -10,25 +10,22 @@ export const useCoachStore = defineStore({
           firstName: 'Adrian',
           lastName: 'Wojtacha',
           areas: ['Matematyka'],
-          description:
-            "Lubie matme wbij na korki",
+          description: 'Lubie matme, wbij na korki',
           hourlyRate: 50,
         },
         {
           id: 'c2',
           firstName: 'Bartosz',
           lastName: 'Troń',
-          areas: ['Angielski'],
-          description:
-            ' I can help you get your first job',
+          areas: ['Geografia'],
+          description: 'I can help you get your first job',
           hourlyRate: 80,
-
         }
       ]
     };
   },
   actions: {
-    contactCoach(payload){
+    contactCoach(payload) {
       const newRequest = {
           id: new Date().toISOString(),
           coachId: payload.coachId,
@@ -46,7 +43,7 @@ export const useCoachStore = defineStore({
         return state.coaches && state.coaches.length > 0;
     },
     getCoach: (state) => {
-      return (coachId) => state.coaches.find(c => c.id === coachId)
+      return (coachId) => state.coaches.find(c => c.id === coachId);
     }
   }
 });
