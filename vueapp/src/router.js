@@ -8,6 +8,7 @@ import CoachesLogin from "./pages/coaches/CoachesLogin.vue";
 import ContactCoach from "./pages/requests/ContactCoach.vue";
 import RequestsReceived from "./pages/requests/RequestsReceived.vue";
 import WebRebuild from "./components/layout/WebRebuild.vue";
+import CoachesAccountPanel from "./pages/coaches/CoachesAccountPanel.vue";
 import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
@@ -30,6 +31,7 @@ const router = createRouter({
       { path: "/login", component: CoachesLogin },
       { path: "/requests", component: RequestsReceived },
       { path: "/webRebuild", component: WebRebuild },
+      { path: "/CoachesAccountPanel", component: CoachesAccountPanel },
       { path: "/:notFound(.*)", component: NotFound }, // bez względu co jest wpisane
    ],
 });

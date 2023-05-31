@@ -1,7 +1,9 @@
 <template>
    <div class="app">
-      <the-header></the-header>
-      <router-view></router-view>
+      <div class="content">
+         <the-header></the-header>
+         <router-view></router-view>
+      </div>
       <the-footer></the-footer>
    </div>
 </template>
@@ -26,8 +28,19 @@ export default {
    margin: 0;
 }
 
-html {
+html,
+body {
    font-family: "Roboto", sans-serif;
-   /* font-size: 10px; */
+}
+
+.app {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+
+.content {
+   flex: 1;
+   overflow: hidden;
 }
 </style>

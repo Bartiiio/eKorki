@@ -34,16 +34,13 @@ export default {
 
 <style lang="scss">
 .footerComp {
-   margin-top: 15px;
    background-color: rgba(29, 109, 203, 1);
-   position: fixed;
-   width: 100vw;
-   height: auto;
-   bottom: 0;
+   margin-top: 10%;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    justify-items: center;
    padding: 5px;
+   max-width: 100%;
    & .ourSite {
       padding: 5px;
       & h1 {
