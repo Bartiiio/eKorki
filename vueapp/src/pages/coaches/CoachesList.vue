@@ -7,7 +7,7 @@
          <base-card>
             <div class="controls">
                <base-button mode="outline">Odśwież</base-button>
-               <router-link mode="outline" to="/post">Dodaj ogłoszenie</router-link>
+               <base-button mode="flat" link to="/post">Dodaj ogłoszenie</base-button>
             </div>
             <ul v-if="hasCoaches">
                <coach-item v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
@@ -19,6 +19,7 @@
    </div>
 </template>
  
+
 <script setup>
 import { ref, computed } from 'vue';
 import { useCoachStore } from '@/store/coaches.store';
