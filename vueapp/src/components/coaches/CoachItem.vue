@@ -3,19 +3,23 @@
       <li>
          <div class="aboutUser">
             <div class="avatar">
-               <img src="https://example.com/avatar.jpg" alt="Avatar">
+               <img src="https://example.com/avatar.jpg" alt="Avatar" />
             </div>
             <h3>{{ fullName }}</h3>
 
             <div>
-               <span v-for="area in areas" :key="area">{{ area }}</span>
+               <span v-if="areas.length === 1">{{ areas[0] }}</span>
+               <span v-else>{{ areas.join(", ") }}</span>
             </div>
          </div>
          <div class="actionsUser">
             <h4>cena od {{ rate }} zł/godzina</h4>
-            <base-button link :to="coachDetailsLink">Więcej informacji</base-button>
-            <base-button mode="outline" link :to="coachContactLink">Wiadomość</base-button>
-
+            <base-button link :to="coachDetailsLink"
+               >Więcej informacji</base-button
+            >
+            <base-button mode="outline" link :to="coachContactLink"
+               >Wiadomość</base-button
+            >
          </div>
       </li>
    </div>
@@ -68,7 +72,6 @@ export default {
          border-radius: 10px;
          padding: 10px;
 
-
          & a {
             text-align: center;
             //  width: 120px;
@@ -80,8 +83,6 @@ export default {
             //   color: inherit;
             //font-size: 15px;
             //  font-weight: bold;
-
-
          }
       }
    }

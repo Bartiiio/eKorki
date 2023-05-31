@@ -11,6 +11,7 @@
             <ul class="userPanel__optionsList">
                <li class="userPanel__option">Zmień hasło</li>
                <li class="userPanel__option">Zmień e-mail</li>
+               <li class="userPanel__option">Moje wiadomości</li>
                <li class="userPanel__option">Aktualne ogłoszenia</li>
             </ul>
             <button class="userPanel__deleteButton">Usuń konto</button>
@@ -71,11 +72,13 @@ export default {};
 }
 
 .userPanel__option {
+   width: 175px;
    cursor: pointer;
    margin: 10px;
    padding: 10px;
    border: 1px ridge black;
    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+   text-align: center;
 }
 
 .userPanel__deleteButton {
