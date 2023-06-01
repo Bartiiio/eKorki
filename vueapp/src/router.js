@@ -10,6 +10,8 @@ import RequestsReceived from "./pages/requests/RequestsReceived.vue";
 import WebRebuild from "./components/layout/WebRebuild.vue";
 import CoachesAccountPanel from "./pages/coaches/CoachesAccountPanel.vue";
 import NotFound from "./pages/NotFound.vue";
+import WebRegulations from "./pages/WebRegulations.vue";
+import WebPolicy from "./pages/WebPolicy.vue";
 
 const router = createRouter({
    // tworze routera
@@ -33,6 +35,8 @@ const router = createRouter({
       { path: "/webRebuild", component: WebRebuild },
       { path: "/CoachesAccountPanel", component: CoachesAccountPanel },
       { path: "/:notFound(.*)", component: NotFound }, // bez względu co jest wpisane
+      { path: "/regulamin", component: WebRegulations },
+      { path: "/politykaprywatnosci", component: WebPolicy },
    ],
 });
 

@@ -3,12 +3,12 @@
       <div class="ourSite">
          <h1>Nasza strona</h1>
          <router-link to="/coaches"><p>eKorepetycje</p></router-link>
-         <router-link to="/coaches"><p>Zostań korepetytorem!</p></router-link>
+         <router-link to="/register"><p>Zostań korepetytorem!</p></router-link>
       </div>
       <div class="helper">
          <h1>Pomoc</h1>
-         <router-link to="/webRebuild"><p>Regulamin</p></router-link>
-         <router-link to="/webRebuild"
+         <router-link to="/Regulamin"><p>Regulamin</p></router-link>
+         <router-link to="/politykaprywatnosci"
             ><p>Polityka prywatności i cookies</p></router-link
          >
       </div>

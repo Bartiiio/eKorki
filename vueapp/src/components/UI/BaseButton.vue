@@ -55,9 +55,18 @@ button:active {
 }
 
 .flat {
-    background-color: transparent;
-    color: #3a0061;
-    border: none;
+    text-align: center;
+    width: 15rem;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font: inherit;
+    background-color: #4BC599;
+    border: 1px solid #4BC599;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-right: 0.5rem;
+    display: inline-block;
 }
 
 .outline {

@@ -2,14 +2,14 @@
    <div class="listof">
       <li>
          <div class="aboutUser">
-            <div class="avatar">
-               <img src="https://example.com/avatar.jpg" alt="Avatar" />
-            </div>
             <h3>{{ fullName }}</h3>
-
-            <div>
-               <span v-if="areas.length === 1">{{ areas[0] }}</span>
-               <span v-else>{{ areas.join(", ") }}</span>
+            <div class="avatar">
+               <img src="https://st.depositphotos.com/2704315/3185/v/450/depositphotos_31854223-stock-illustration-vector-user-profile-avatar-man.jpg" alt="Avatar" />
+            </div>
+            
+            <div class="areas">
+               <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
+               
             </div>
          </div>
          <div class="actionsUser">
@@ -43,6 +43,27 @@ export default {
 </script>
 
 <style lang="scss">
+ h3 {
+   font-size: 1.5rem;
+}
+img {
+   width: 10rem;
+   height: 10rem;
+}
+.avatar{
+   width: 10rem;
+}
+.areas{
+ //  padding: 10px;
+}
+.areas > span {
+  // padding: 10px;
+ //  border-radius: 10px;
+  // box-shadow: 0px 0px 3px 1px rgba(66, 68, 90, 1);
+ //  background-color: #4e294e;
+ //  margin: 20px;
+ //  color: #ccc;
+}
 .listof {
    // width: 60vw;
    margin: 0 auto;
