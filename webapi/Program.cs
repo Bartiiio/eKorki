@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("fe",
-        pb => pb.WithOrigins("https://localhost:5003").AllowCredentials().AllowAnyMethod().AllowAnyHeader());
+        pb => pb.WithOrigins("https://localhost:5002").AllowCredentials().AllowAnyMethod().AllowAnyHeader());
 });
 
 builder.Services.AddDbContext<AppDbContext>(options =>

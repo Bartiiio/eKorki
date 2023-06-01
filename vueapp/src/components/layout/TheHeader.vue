@@ -7,21 +7,18 @@
          </h1>
       </div>
       <div class="logins">
-         <div class="beforelogged">
-            <router-link to="/register" v-if="!isLoggedIn">
-               <button class="register">Rejestracja</button>
-            </router-link>
-            <router-link to="/login" v-if="!isLoggedIn">
-               <button class="login">Logowanie</button>
-            </router-link>
-         </div>
-         <div class="loggedUser">
+         <router-link to="/register" v-if="!isLoggedIn">
+            <button class="register">Rejestracja</button>
+         </router-link>
+         <router-link to="/login" v-if="!isLoggedIn">
+            <button class="login">Logowanie</button>
+         </router-link>
+         <div class="loggedUser" v-if="isLoggedIn">
             <img src="../../assets/user.png" alt="" class="logged__User" />
             <p class="myAccount">Moje Konto</p>
-            <button class="login" v-if="isLoggedIn" @click="logout()">
+            <button class="login" @click="logout()">
                Wyloguj
             </button>
-            <button class="login">Wyloguj</button>
          </div>
       </div>
    </div>
