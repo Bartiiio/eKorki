@@ -61,32 +61,31 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useAuthStore } from '@/store';
+import { ref } from "vue";
+import { useAuthStore } from "@/store";
 
-const FirstName = ref('');
-const LastName = ref('');
-const email = ref('');
-const password = ref('');
-const repeatPassword = ref('');
+const FirstName = ref("");
+const LastName = ref("");
+const email = ref("");
+const password = ref("");
+const repeatPassword = ref("");
 const checkbox = ref(false);
 
 const authStore = useAuthStore();
-const { register } = authStore; 
+const { register } = authStore;
 
 function submitForm() {
-  if (checkbox.value && password.value === repeatPassword.value) {
-    register(email.value, FirstName.value, LastName.value, password.value);
-  } else {
-    if (checkbox.value) {
-      alert('Passwords do not match!');
-    } else {
-      alert('Terms and privacy policy have not been accepted');
-    }
-  }
+   if (checkbox.value && password.value === repeatPassword.value) {
+      register(email.value, FirstName.value, LastName.value, password.value);
+   } else {
+      if (checkbox.value) {
+         alert("Passwords do not match!");
+      } else {
+         alert("Terms and privacy policy have not been accepted");
+      }
+   }
 }
 </script>
-
 
 <style lang="scss">
 * {
@@ -96,7 +95,7 @@ function submitForm() {
 }
 .registerColumns {
    display: grid;
-   grid-template-rows: 18% 15% 15% 15% 15% 5% 14%;
+   grid-template-rows: 18% 10% 10% 10% 10% 10% 14%;
    height: 100%;
 }
 .createUsername,
@@ -108,17 +107,21 @@ function submitForm() {
    align-items: center;
    width: 100%;
    & input {
-      width: 400px;
-      height: 50px;
+      width: 350px;
+      height: 30px;
       border-radius: 50px;
       padding-left: 20px;
       border: 2px solid black;
+   }
+   @media screen and (max-width: 480px) {
+      scale: 0.8;
    }
 }
 .acceptStatute {
    display: flex;
    flex-direction: row;
    justify-content: center;
+   align-items: baseline;
    & input {
       margin: 5px;
    }

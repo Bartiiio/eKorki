@@ -22,7 +22,7 @@
                   :lesson-type="lesson.lessonType"
                ></lesson-item>
             </ul>
-            <h3 v-else>Brak lekcji</h3>
+            <h3 class="h3style" v-else>Brak lekcji</h3>
          </base-card>
       </section>
    </div>
@@ -121,5 +121,9 @@ ul {
 .controls {
    display: flex;
    justify-content: space-between;
+}
+.h3style {
+   margin-top: 20px;
+   text-align: center;
 }
 </style>

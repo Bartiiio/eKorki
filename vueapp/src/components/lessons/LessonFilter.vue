@@ -96,6 +96,14 @@ export default {
 <style scoped>
 .filters {
    display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+@media screen and (max-width: 543px) {
+   .checkbox-wrapper-47 {
+      flex-basis: 100%;
+   }
 }
 h2 {
    margin: 0.5rem 0;
