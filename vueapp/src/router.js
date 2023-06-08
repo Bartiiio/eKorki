@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router"; // import router
 
-import CoachesDetail from "./pages/coaches/CoachesDetail.vue";
-import CoachesList from "./pages/coaches/CoachesList.vue";
+import LessonDetail from "./pages/Lessons/LessonDetail.vue";
+import LessonsList from "./pages/Lessons/LessonsList.vue";
+import LessonPost from "./pages/Lessons/LessonPost.vue";
 import CoachesRegistration from "./pages/coaches/CoachesRegistration.vue";
-import CoachesPost from "./pages/coaches/CoachesPost.vue";
 import CoachesLogin from "./pages/coaches/CoachesLogin.vue";
 import ContactCoach from "./pages/requests/ContactCoach.vue";
 import RequestsReceived from "./pages/requests/RequestsReceived.vue";
@@ -19,17 +19,17 @@ const router = createRouter({
    routes: [
       // ustawiam trasy
       { path: "/", redirect: "/coaches" },
-      { path: "/coaches", component: CoachesList },
+      { path: "/coaches", component: LessonsList },
       {
          path: "/coaches/:id",
-         component: CoachesDetail,
+         component: LessonDetail,
          props: true,
          children: [
             { path: "contact", component: ContactCoach }, // coaches/id/contact
          ],
       },
       { path: "/register", component: CoachesRegistration },
-      { path: "/post", component: CoachesPost },
+      { path: "/post", component: LessonPost },
       { path: "/login", component: CoachesLogin },
       { path: "/requests", component: RequestsReceived },
       { path: "/webRebuild", component: WebRebuild },

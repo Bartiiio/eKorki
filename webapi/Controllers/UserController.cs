@@ -38,7 +38,9 @@ public class UserController : ControllerBase
  
         ApplicationUser newUser = new()
         {
-            UserName = userRegisterDTO.Name,
+            FirstName = userRegisterDTO.FirstName,
+            LastName = userRegisterDTO.LastName,
+            UserName = userRegisterDTO.Email,
             Email = userRegisterDTO.Email,
             SecurityStamp = Guid.NewGuid().ToString(),
         };

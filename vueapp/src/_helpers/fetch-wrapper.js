@@ -28,7 +28,7 @@ function authHeader() {
     const { user } = useAuthStore();
     const isLoggedIn = !!user?.token;
     if (isLoggedIn) {
-        return { Authorization: `Bearer ${user.token}` };
+        return { Authorization: `Bearer ${user?.token.token}` };
     } else {
         return {};
     }

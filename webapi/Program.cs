@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using webapi.Repositiories.Implementations;
+using webapi.Repositiories.Interfaces;
 using webapi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +22,9 @@ builder.Services.AddCors(options =>
         pb => pb.WithOrigins("https://localhost:5002").AllowCredentials().AllowAnyMethod().AllowAnyHeader());
 });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EKorkiDatabase")));
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseLazyLoadingProxies()
+    .UseSqlServer(builder.Configuration.GetConnectionString("EKorkiDatabase")));
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.User.RequireUniqueEmail = true;
@@ -53,6 +56,8 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddTransient<IClaimsService, ClaimsService>();
 builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<ILessonTypeRepository, LessonTypeRepository>();
+builder.Services.AddScoped<ILessonRepository, LessonRepository>();
 var app = builder.Build();
 
 app.UseCors("fe");

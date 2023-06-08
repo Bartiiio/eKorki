@@ -10,8 +10,16 @@
                <div class="createUsername">
                   <input
                      type="text"
-                     v-model.trim="userName"
-                     placeholder="Nazwa użytkownika"
+                     v-model.trim="FirstName"
+                     placeholder="Imię"
+                     required
+                  />
+               </div>
+               <div class="createUsername">
+                  <input
+                     type="text"
+                     v-model.trim="LastName"
+                     placeholder="Nazwisko"
                      required
                   />
                </div>
@@ -56,7 +64,8 @@
 import { ref } from 'vue';
 import { useAuthStore } from '@/store';
 
-const userName = ref('');
+const FirstName = ref('');
+const LastName = ref('');
 const email = ref('');
 const password = ref('');
 const repeatPassword = ref('');
@@ -67,7 +76,7 @@ const { register } = authStore;
 
 function submitForm() {
   if (checkbox.value && password.value === repeatPassword.value) {
-    register(email.value, userName.value, password.value);
+    register(email.value, FirstName.value, LastName.value, password.value);
   } else {
     if (checkbox.value) {
       alert('Passwords do not match!');

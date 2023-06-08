@@ -8,13 +8,13 @@
             </div>
             
             <div class="areas">
-               <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
+               <base-badge :title="lessonType?.name"></base-badge>
                
             </div>
          </div>
          <div class="actionsUser">
             <h4>cena od {{ rate }} zł/godzina</h4>
-            <base-button link :to="coachDetailsLink"
+            <base-button link :to="lessonDetailsLink"
                >Więcej informacji</base-button
             >
             <base-button mode="outline" link :to="coachContactLink"
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-   props: ["id", "firstName", "lastName", "rate", "areas"],
+   props: ["id", "firstName", "lastName", "rate", "lessonType"],
    computed: {
       fullName() {
          return this.firstName + " " + this.lastName;
@@ -35,8 +35,8 @@ export default {
       coachContactLink() {
          return this.$route.path + "/" + this.id + "/contact";
       },
-      coachDetailsLink() {
-         return this.$route.path + "/" + this.id;
+      lessonDetailsLink() {
+         return this.$route?.path + "/" + this.id;
       },
    },
 };
@@ -53,17 +53,17 @@ img {
 .avatar{
    width: 10rem;
 }
-.areas{
- //  padding: 10px;
-}
-.areas > span {
-  // padding: 10px;
- //  border-radius: 10px;
-  // box-shadow: 0px 0px 3px 1px rgba(66, 68, 90, 1);
- //  background-color: #4e294e;
- //  margin: 20px;
- //  color: #ccc;
-}
+// .areas{
+//  //  padding: 10px;
+// }
+// .areas > span {
+//   // padding: 10px;
+//  //  border-radius: 10px;
+//   // box-shadow: 0px 0px 3px 1px rgba(66, 68, 90, 1);
+//  //  background-color: #4e294e;
+//  //  margin: 20px;
+//  //  color: #ccc;
+// }
 .listof {
    // width: 60vw;
    margin: 0 auto;

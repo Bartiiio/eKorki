@@ -1,14 +1,6 @@
 <template>
    <form @submit.prevent="submitForm">
       <div class="form-control">
-         <label for="firstname">Imie</label>
-         <input type="text" id="firstname" v-model.trim="firstName" required />
-      </div>
-      <div class="form-control">
-         <label for="lastname">Nazwisko</label>
-         <input type="text" id="lastname" v-model.trim="lastName" required />
-      </div>
-      <div class="form-control">
          <label for="description">Opis</label>
          <textarea
             type="text"
@@ -23,29 +15,11 @@
          <input type="number" id="rate" v-model.trim="rate" required />
       </div>
       <div class="form-control">
-         <h3>Przedmiot</h3>
-         <div>
-            <input
-               type="checkbox"
-               id="Matematyka"
-               value="Matematyka"
-               v-model="areas"
-            />
-            <label for="Matematyka">Matematyka</label>
-         </div>
-         <div>
-            <input
-               type="checkbox"
-               id="Geografia"
-               value="Geografia"
-               v-model="areas"
-            />
-            <label for="Geografia">Geografia</label>
-         </div>
-         <div>
-            <input type="checkbox" id="Fizyka" value="Fizyka" v-model="areas" />
-            <label for="Fizyka">Fizyka</label>
-         </div>
+         <select v-model="subject">
+            <option v-for="option in options" :value="option.value" :key="option.value">
+               {{ option.text }}
+            </option>
+         </select>
       </div>
       <base-button>Dodaj ogłoszenie</base-button>
    </form>
@@ -54,28 +28,28 @@
 <script>
 export default {
    emits: ["save-data"],
+   props: {
+      options: []
+   },
    data() {
       return {
-         firstName: "",
-         lastName: "",
          description: "",
          rate: null,
-         areas: [],
+         subject: null,
       };
    },
    methods: {
       submitForm() {
-         if (this.areas.length == 0) {
+         if (this.subject === null) {
             alert("Wybierz przedmiot!");
             return;
          }
          const formData = {
-            first: this.firstName,
-            last: this.lastName,
             desc: this.description,
             rate: this.rate,
-            areas: this.areas,
+            subject: this.subject,
          };
+         
          this.$emit("save-data", formData);
       },
    },
