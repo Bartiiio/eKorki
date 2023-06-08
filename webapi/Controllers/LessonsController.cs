@@ -67,7 +67,7 @@ public class LessonsController : ControllerBase
     // POST: api/lessons
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> CreateLesson(LessonRequestDTO lessonRequestDto)
+    public async Task<ActionResult<LessonResponseDTO>> CreateLesson(LessonRequestDTO lessonRequestDto)
     {
         var email = User.FindFirstValue(ClaimTypes.Email);
         var user = await _userManager.FindByEmailAsync(email);
@@ -79,9 +79,18 @@ public class LessonsController : ControllerBase
             User = user,
             LessonType = lessonType
         };
-        await _lessonRepository.AddAsync(lesson);
-
-        return CreatedAtAction(nameof(GetLesson), new { id = lessonRequestDto.Id }, lessonRequestDto);
+        var addedLesson = await _lessonRepository.AddAsync(lesson);
+        
+        var lessonsDTOs = new LessonResponseDTO()
+        {
+            Id = lesson.Id,
+            FirstName = lesson.User.FirstName,
+            LastName = lesson.User.LastName,
+            Description = lesson.Description,
+            LessonType = lesson.LessonType,
+            Price = lesson.Price
+        };
+        return Ok(lessonsDTOs);
     }
 
     // PUT: api/lessons/5

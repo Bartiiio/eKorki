@@ -10,9 +10,12 @@ import BaseButton from './components/UI/BaseButton.vue';
 import BaseBadge from './components/UI/BaseBadge.vue';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
 const app = createApp(App)
 
 app.use(createPinia());
+app.use(VueAwesomePaginate);
 app.use(Toast);
 app.use(router);
 app.use(store);

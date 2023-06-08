@@ -12,7 +12,9 @@ import { useRouter } from "vue-router";
 import LessonForm from "../../components/lessons/LessonForm.vue";
 import { useLessonsStore } from '@/store';
 import { onBeforeMount, ref } from "vue";
+import { useToast } from "vue-toastification";
  
+const toast = useToast();
 const lessonStore = useLessonsStore();
 let options = ref([]);
  const router = useRouter();
@@ -24,6 +26,7 @@ let options = ref([]);
       LessonTypeId: data.subject,
    };
    await lessonStore.addNewLesson(lessonData);
+   toast.success("Lesson added")
    router.replace("/coaches");
 }
  

@@ -23,10 +23,11 @@ public class LessonRepository : ILessonRepository
         return await _dbContext.Lessons.ToListAsync();
     }
 
-    public async Task AddAsync(Lesson lesson)
+    public async Task<Lesson> AddAsync(Lesson lesson)
     {
-        await _dbContext.Lessons.AddAsync(lesson);
+        var addedLesson = await _dbContext.Lessons.AddAsync(lesson);
         await _dbContext.SaveChangesAsync();
+        return addedLesson.Entity;
     }
 
     public async Task UpdateAsync(Lesson lesson)

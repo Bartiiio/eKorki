@@ -13,7 +13,7 @@
             </div>
             <ul v-if="filteredLessons.length > 0">
                <lesson-item
-                  v-for="lesson in filteredLessons"
+                  v-for="lesson in paginatedFilteredLessons"
                   :key="lesson.id"
                   :id="lesson.id"
                   :first-name="lesson.firstName"
@@ -21,6 +21,15 @@
                   :rate="lesson.price"
                   :lesson-type="lesson.lessonType"
                ></lesson-item>
+               <div class="pagination-wrapper">
+                  <vue-awesome-paginate
+                  :total-items="filteredLessons.length"
+                  :items-per-page="itemsPerPage"
+                  :max-pages-shown="10"
+                  v-model="currentPage"
+                  :on-click="onClickHandler"
+                  />
+               </div>
             </ul>
             <h3 class="h3style" v-else>Brak lekcji</h3>
          </base-card>
@@ -34,7 +43,9 @@ import LessonItem from "../../components/lessons/LessonItem.vue";
 import LessonFilter from "../../components/lessons/LessonFilter.vue";
 import { useAuthStore, useLessonsStore } from "@/store";
 import { storeToRefs } from "pinia";
-
+const currentPage = ref(1);
+const itemsPerPage = 5;
+const paginatedFilteredLessons = ref([]);
 const authStore = useAuthStore();
 const lessonStore = useLessonsStore();
 const { isLoggedIn } = storeToRefs(authStore);
@@ -48,6 +59,12 @@ const activeFilters = ref({
    biologia: false,
    informatyka: false,
 });
+
+const onClickHandler = (page) => {
+      const index = page - 1;
+      const start = index * itemsPerPage;
+      paginatedFilteredLessons.value = filteredLessons.value.slice(start, start + itemsPerPage);
+  };
 
 const setFilters = (updatedFilters) => {
    activeFilters.value = updatedFilters;
@@ -63,9 +80,11 @@ const filteredLessons = computed(() => {
       !activeFilters.value.biologia &&
       !activeFilters.value.informatyka
    ) {
+      currentPage.value = 1;
+      paginatedFilteredLessons.value = lessons.value.slice(0, itemsPerPage);
       return lessons.value;
    }
-   return lessons.value.filter((lesson) => {
+   const filtered = lessons.value.filter((lesson) => {
       if (activeFilters.value.fizyka && lesson.lessonType.name === "Fizyka") {
          return true;
       }
@@ -103,6 +122,9 @@ const filteredLessons = computed(() => {
          return true;
       }
    });
+   paginatedFilteredLessons.value = filtered.slice(0, itemsPerPage);
+   currentPage.value = 1;
+   return  filtered
 });
 
 async function fetchLessons() {
@@ -137,4 +159,34 @@ ul {
    margin-top: 20px;
    text-align: center;
 }
+.pagination-wrapper {
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   margin-top: 20px;
+}
+.pagination-container {
+    display: flex;
+    column-gap: 10px;
+  }
+  .paginate-buttons {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: rgb(242, 242, 242);
+    border: 1px solid rgb(217, 217, 217);
+    color: black;
+  }
+  .paginate-buttons:hover {
+    background-color: #d8d8d8;
+  }
+  .active-page {
+    background-color: #3498db;
+    border: 1px solid #3498db;
+    color: white;
+  }
+  .active-page:hover {
+    background-color: #2988c8;
+  }
 </style>

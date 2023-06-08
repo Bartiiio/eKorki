@@ -23,7 +23,8 @@ export const useLessonsStore = defineStore({
             return await fetchWrapper.get(`${lessonBaseUrl}/${id}`);
         },
         async addNewLesson(lesson) {
-            return await fetchWrapper.post(`${lessonBaseUrl}`, lesson);
+            const newLesson = await fetchWrapper.post(`${lessonBaseUrl}`, lesson);
+            this.lessons.push(newLesson);
         },
     }
 });
