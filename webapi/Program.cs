@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using webapi.Repositiories.Implementations;
 using webapi.Repositiories.Interfaces;
 using webapi.Services;
+using ILessonRepository = webapi.Repositiories.Implementations.ILessonRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,7 +58,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddTransient<IClaimsService, ClaimsService>();
 builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<ILessonTypeRepository, LessonTypeRepository>();
-builder.Services.AddScoped<ILessonRepository, LessonRepository>();
+builder.Services.AddScoped<webapi.Repositiories.Interfaces.ILessonRepository, ILessonRepository>();
 var app = builder.Build();
 
 app.UseCors("fe");

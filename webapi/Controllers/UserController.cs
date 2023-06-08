@@ -1,8 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using webapi.DTOs;
 using webapi.DTOs.Login;
+using webapi.Repositiories.Interfaces;
 using webapi.Services;
 
 namespace webapi.Controllers;
@@ -13,17 +16,20 @@ public class UserController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<ApplicationRole> _roleManager;
+    private readonly ILessonRepository _lessonRepository;
     private readonly IClaimsService _claimsService;
     private readonly IJwtTokenService _jwtTokenService;
 
     public UserController(
         UserManager<ApplicationUser> userManager,
         RoleManager<ApplicationRole> roleManager,
+        ILessonRepository lessonRepository,
         IClaimsService _claimsService,
         IJwtTokenService jwtTokenService)
     {
         _userManager = userManager;
         _roleManager = roleManager;
+        _lessonRepository = lessonRepository;
         this._claimsService = _claimsService;
         _jwtTokenService = jwtTokenService;
     }
@@ -75,6 +81,8 @@ public class UserController : ControllerBase
             var token = await GetToken(user);
             return Ok(new UserLoginResultDTO
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Succeeded = true,
                 Token = token
             });
@@ -84,6 +92,34 @@ public class UserController : ControllerBase
         {
             Succeeded = false,
             Message = "The email and password combination was invalid."
+        });
+    }
+    
+    [HttpDelete]
+    [Authorize]
+    [Route("delete")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Delete()
+    {
+        var email = User.FindFirstValue(ClaimTypes.Email);
+        var user = await _userManager.FindByEmailAsync(email);
+ 
+        if (user != null)
+        {
+            var userLessons = await _lessonRepository.GetByUserId(user.Id);
+            foreach (var lesson in userLessons)
+            {
+                await _lessonRepository.DeleteAsync(lesson);
+            }
+            await _userManager.DeleteAsync(user);
+            return Ok();
+        }
+ 
+        return Unauthorized(new UserLoginResultDTO
+        {
+            Succeeded = false,
+            Message = "You are not logged in"
         });
     }
 

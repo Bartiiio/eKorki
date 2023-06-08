@@ -14,9 +14,6 @@
                   <input v-model.trim="password" class="password" type="password" placeholder="Hasło" required />
                </div>
                <div class="rememberAndForget">
-                  <input type="checkbox" />
-                  <p class="rememberME">Zapamiętaj mnie</p>
-                  <p class="forget">Nie pamiętasz hasła?</p>
                </div>
                <div class="logIn">
                   <button type="submit">Zaloguj się</button>

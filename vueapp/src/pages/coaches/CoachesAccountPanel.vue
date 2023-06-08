@@ -1,27 +1,26 @@
 <template>
    <div class="userPanel">
       <div class="userPanel__header">
-         <h2 class="userPanel__title">Witaj { użytkowniku }!</h2>
+         <h2 class="userPanel__title">Witaj {{ user?.firstName }} {{ user?.lastName }}!</h2>
       </div>
       <div class="userPanel__content">
          <div class="userPanel__section">
-            <h3 class="userPanel__sectionTitle">
-               Dostępne opcje dla Twojego konta:
-            </h3>
             <ul class="userPanel__optionsList">
-               <li class="userPanel__option">Zmień hasło</li>
-               <li class="userPanel__option">Zmień e-mail</li>
-               <li class="userPanel__option">Moje wiadomości</li>
-               <li class="userPanel__option">Aktualne ogłoszenia</li>
+               <li class="userPanel__option">Moje ogłoszenia</li>
             </ul>
-            <button class="userPanel__deleteButton">Usuń konto</button>
+            <button @click="deleteAccount" class="userPanel__deleteButton">Usuń konto</button>
          </div>
       </div>
    </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { useAuthStore } from '@/store';
+import { storeToRefs } from 'pinia';
+
+const authStore = useAuthStore();
+const { deleteAccount } = authStore;
+const { user } = storeToRefs(authStore)
 </script>
 
 <style lang="scss">

@@ -4,11 +4,11 @@ using webapi.Repositiories.Interfaces;
 
 namespace webapi.Repositiories.Implementations;
 
-public class LessonRepository : ILessonRepository
+public class ILessonRepository : Interfaces.ILessonRepository
 {
     private readonly AppDbContext _dbContext;
 
-    public LessonRepository(AppDbContext dbContext)
+    public ILessonRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -16,6 +16,11 @@ public class LessonRepository : ILessonRepository
     public async Task<Lesson> GetByIdAsync(int id)
     {
         return await _dbContext.Lessons.FindAsync(id);
+    }
+    
+    public async Task<List<Lesson>> GetByUserId(Guid id)
+    {
+        return await _dbContext.Lessons.Select(lesson => lesson).Where(lesson => lesson.User.Id == id).ToListAsync();
     }
 
     public async Task<List<Lesson>> GetAllAsync()

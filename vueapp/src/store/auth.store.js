@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 import { fetchWrapper } from '@/_helpers';
 import router from '@/router';
+import { useLessonsStore } from './lessons.store';
 
 const baseUrl = `https://localhost:7183/user`;
 
@@ -32,6 +33,12 @@ export const useAuthStore = defineStore({
             localStorage.setItem('user', JSON.stringify(user));
 
             router.push(this.returnUrl || '/');
+        },
+        async deleteAccount() {
+            const lessonStore = useLessonsStore();
+            await fetchWrapper.delete(`${baseUrl}/delete`);
+            await lessonStore.getAllLessons();
+            this.logout();
         },
         logout() {
             this.user = null;
