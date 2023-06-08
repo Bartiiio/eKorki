@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace webapi.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230608002816_lessons")]
-    partial class lessons
+    [Migration("20230608110754_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -15,7 +15,7 @@
          </router-link>
          <div class="loggedUser" v-if="isLoggedIn">
             <img src="../../assets/user.png" alt="" class="logged__User" />
-            <p class="myAccount">Moje Konto</p>
+            <router-link class="myAccount" to="/CoachesAccountPanel">Moje konto</router-link>
             <button class="login" @click="logout()">
                Wyloguj
             </button>
