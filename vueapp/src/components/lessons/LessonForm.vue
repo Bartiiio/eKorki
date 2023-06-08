@@ -12,11 +12,15 @@
       </div>
       <div class="form-control">
          <label for="rate">Cena</label>
-         <input type="number" id="rate" v-model.trim="rate" required />
+         <input type="number" id="rate" min="1" v-model.trim="rate" required />
       </div>
       <div class="form-control">
          <select v-model="subject">
-            <option v-for="option in options" :value="option.value" :key="option.value">
+            <option
+               v-for="option in options"
+               :value="option.value"
+               :key="option.value"
+            >
                {{ option.text }}
             </option>
          </select>
@@ -29,7 +33,7 @@
 export default {
    emits: ["save-data"],
    props: {
-      options: []
+      options: [],
    },
    data() {
       return {
@@ -49,7 +53,7 @@ export default {
             rate: this.rate,
             subject: this.subject,
          };
-         
+
          this.$emit("save-data", formData);
       },
    },

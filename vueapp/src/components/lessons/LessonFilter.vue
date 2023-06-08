@@ -29,6 +29,42 @@
             />
             <label for="fizyka">Fizyka</label>
          </div>
+         <div class="checkbox-wrapper-47">
+            <input
+               type="checkbox"
+               id="angielski"
+               v-model="filters.angielski"
+               @change="setFilter"
+            />
+            <label for="angielski">Angielski</label>
+         </div>
+         <div class="checkbox-wrapper-47">
+            <input
+               type="checkbox"
+               id="chemia"
+               v-model="filters.chemia"
+               @change="setFilter"
+            />
+            <label for="chemia">Chemia</label>
+         </div>
+         <div class="checkbox-wrapper-47">
+            <input
+               type="checkbox"
+               id="biologia"
+               v-model="filters.biologia"
+               @change="setFilter"
+            />
+            <label for="biologia">Biologia</label>
+         </div>
+         <div class="checkbox-wrapper-47">
+            <input
+               type="checkbox"
+               id="informatyka"
+               v-model="filters.informatyka"
+               @change="setFilter"
+            />
+            <label for="informatyka">Informatyka</label>
+         </div>
       </div>
    </base-card>
 </template>
@@ -42,6 +78,10 @@ export default {
             matematyka: false,
             geografia: false,
             fizyka: false,
+            angielski: false,
+            chemia: false,
+            biologia: false,
+            informatyka: false,
          },
       };
    },
@@ -56,6 +96,14 @@ export default {
 <style scoped>
 .filters {
    display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+@media screen and (max-width: 543px) {
+   .checkbox-wrapper-47 {
+      flex-basis: 100%;
+   }
 }
 h2 {
    margin: 0.5rem 0;

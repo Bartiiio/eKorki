@@ -4,12 +4,14 @@
          <div class="aboutUser">
             <h3>{{ fullName }}</h3>
             <div class="avatar">
-               <img src="https://st.depositphotos.com/2704315/3185/v/450/depositphotos_31854223-stock-illustration-vector-user-profile-avatar-man.jpg" alt="Avatar" />
+               <img
+                  src="https://st.depositphotos.com/2704315/3185/v/450/depositphotos_31854223-stock-illustration-vector-user-profile-avatar-man.jpg"
+                  alt="Avatar"
+               />
             </div>
-            
+
             <div class="areas">
                <base-badge :title="lessonType?.name"></base-badge>
-               
             </div>
          </div>
          <div class="actionsUser">
@@ -43,14 +45,14 @@ export default {
 </script>
 
 <style lang="scss">
- h3 {
+h3 {
    font-size: 1.5rem;
 }
 img {
    width: 10rem;
    height: 10rem;
 }
-.avatar{
+.avatar {
    width: 10rem;
 }
 // .areas{
@@ -104,6 +106,19 @@ img {
             //   color: inherit;
             //font-size: 15px;
             //  font-weight: bold;
+         }
+      }
+      @media screen and (max-width: 543px) {
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content: center;
+         .actionsUser {
+            margin-top: 15px;
+         }
+         .aboutUser {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
          }
       }
    }

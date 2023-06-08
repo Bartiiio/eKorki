@@ -14,11 +14,13 @@
             <button class="login">Logowanie</button>
          </router-link>
          <div class="loggedUser" v-if="isLoggedIn">
-            <img src="../../assets/user.png" alt="" class="logged__User" />
-            <router-link class="myAccount" to="/CoachesAccountPanel">Moje konto</router-link>
-            <button class="login" @click="logout()">
-               Wyloguj
-            </button>
+            <router-link to="/CoachesAccountPanel" class="iconPanel">
+               <img src="../../assets/user.png" alt="" class="logged__User" />
+            </router-link>
+            <router-link class="myAccount" to="/CoachesAccountPanel"
+               >Moje konto</router-link
+            >
+            <button class="login" @click="logout()">Wyloguj</button>
          </div>
       </div>
    </div>
@@ -44,10 +46,19 @@ const { logout } = store;
    background-color: rgba(75, 197, 153, 1);
    display: grid;
    grid-template-columns: 1fr 1fr;
+   @media screen and (max-width: 750px) {
+      grid-template-columns: 125px 1fr;
+   }
 }
 .logo {
    display: grid;
    grid-template-columns: 100px 1fr;
+   @media screen and (max-width: 750px) {
+      grid-template-columns: 125px;
+      &__text {
+         display: none;
+      }
+   }
 }
 
 .logo__text {
@@ -76,7 +87,21 @@ const { logout } = store;
    display: grid;
    grid-template-columns: 40% 30% 1fr;
    justify-content: start;
-   align-items: start;
+   align-items: center;
+   & a {
+      text-decoration: none;
+      text-align: start;
+      color: #000000;
+   }
+   .iconPanel {
+      text-align: end;
+   }
+   @media screen and (max-width: 1070px) {
+      justify-content: end;
+   }
+   @media screen and (max-width: 750px) {
+      justify-content: center;
+   }
 }
 
 .loggedUser img {
@@ -85,6 +110,7 @@ const { logout } = store;
    width: 30px;
    margin: 15px;
    margin-left: 0;
+   margin-right: 5px;
 }
 
 .loggedUser p {
@@ -135,6 +161,12 @@ const { logout } = store;
    & a {
       text-decoration: none;
       color: inherit;
+   }
+   @media screen and (max-width: 1070px) {
+      scale: 0.9;
+   }
+   @media screen and (max-width: 750px) {
+      scale: 0.8;
    }
 }
 .register:hover {
