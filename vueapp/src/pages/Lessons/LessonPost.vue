@@ -28,7 +28,9 @@ let options = ref([]);
 }
  
 onBeforeMount(async () => {
-   await lessonStore.fetchLessonTypes();
+   if (lessonStore.lessonTypes.length === 0) {
+      await lessonStore.fetchLessonTypes();
+   }
    options.value = lessonStore.lessonTypes.map(lesson => ({text: lesson.name, value: lesson.id}))
  })
  </script>

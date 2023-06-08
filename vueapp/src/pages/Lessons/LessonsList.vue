@@ -6,7 +6,7 @@
       <section>
          <base-card>
             <div class="controls">
-               <base-button mode="outline">Odśwież</base-button>
+               <base-button @click="refreshLessons" mode="outline">Odśwież</base-button>
                <base-button v-if="isLoggedIn" mode="flat" link to="/post"
                   >Dodaj ogłoszenie</base-button
                >
@@ -105,8 +105,19 @@ const filteredLessons = computed(() => {
    });
 });
 
-onMounted(async () => {
+async function fetchLessons() {
    await lessonStore.getAllLessons();
+}
+
+async function refreshLessons() {
+   await lessonStore.getAllLessons();
+   lessons.value = lessonStore.lessons;
+}
+
+onMounted(async () => {
+   if (lessonStore.lessons.length === 0) {
+      await fetchLessons()
+   }
    lessons.value = lessonStore.lessons;
 });
 </script>
