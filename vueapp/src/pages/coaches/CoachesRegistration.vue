@@ -63,6 +63,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuthStore } from '@/store';
+import { useToast } from "vue-toastification";
 
 const FirstName = ref('');
 const LastName = ref('');
@@ -73,10 +74,12 @@ const checkbox = ref(false);
 
 const authStore = useAuthStore();
 const { register } = authStore; 
+const toast = useToast();
 
 function submitForm() {
   if (checkbox.value && password.value === repeatPassword.value) {
-    register(email.value, FirstName.value, LastName.value, password.value);
+    register(email.value, FirstName.value, LastName.value, password.value)
+    .catch((error) => toast.error(error));
   } else {
     if (checkbox.value) {
       alert('Passwords do not match!');

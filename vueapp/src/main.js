@@ -8,9 +8,12 @@ import { createPinia } from 'pinia';
 import BaseCard from './components/UI/BaseCard.vue';
 import BaseButton from './components/UI/BaseButton.vue';
 import BaseBadge from './components/UI/BaseBadge.vue';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 const app = createApp(App)
 
 app.use(createPinia());
+app.use(Toast);
 app.use(router);
 app.use(store);
 app.use (fetchWrapper);

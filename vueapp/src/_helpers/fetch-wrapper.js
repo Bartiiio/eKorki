@@ -44,8 +44,7 @@ function handleResponse(response) {
                 // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
                 logout();
             }
-
-            const error = (data && data.message) || response.statusText;
+            const error = (data && data.message) || response.statusText || data?.errors[0];
             return Promise.reject(error);
         }
 

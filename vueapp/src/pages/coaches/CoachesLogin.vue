@@ -46,15 +46,17 @@
 <script setup>
 import { useAuthStore } from '@/store';
 import { ref } from 'vue';
+import { useToast } from "vue-toastification";
 
 const email = ref('');
 const password = ref('');
 const authStore = useAuthStore();
 const { login } = authStore;
+const toast = useToast();
 
 function onSubmit() {
    return login(email.value, password.value)
-      .catch(error => console.log(error));
+      .catch(error => toast.error(error));
 }
 </script>
 
