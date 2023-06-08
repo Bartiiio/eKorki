@@ -8,44 +8,19 @@
                   <h2>Dołącz do nas i znajdź korepetytora!</h2>
                </div>
                <div class="createUsername">
-                  <input
-                     type="text"
-                     v-model.trim="FirstName"
-                     placeholder="Imię"
-                     required
-                  />
+                  <input type="text" v-model.trim="FirstName" placeholder="Imię" required />
                </div>
                <div class="createUsername">
-                  <input
-                     type="text"
-                     v-model.trim="LastName"
-                     placeholder="Nazwisko"
-                     required
-                  />
+                  <input type="text" v-model.trim="LastName" placeholder="Nazwisko" required />
                </div>
                <div class="typeEmail">
-                  <input
-                     type="email"
-                     v-model.trim="email"
-                     placeholder="E-mail"
-                     required
-                  />
+                  <input type="email" v-model.trim="email" placeholder="E-mail" required />
                </div>
                <div class="createPassword">
-                  <input
-                     type="password"
-                     v-model.trim="password"
-                     placeholder="Hasło"
-                     required
-                  />
+                  <input type="password" v-model.trim="password" placeholder="Hasło" required />
                </div>
                <div class="repeatPassword">
-                  <input
-                     type="password"
-                     v-model.trim="repeatPassword"
-                     placeholder="Powtórz hasło"
-                     required
-                  />
+                  <input type="password" v-model.trim="repeatPassword" placeholder="Powtórz hasło" required />
                </div>
                <div class="acceptStatute">
                   <input type="checkbox" v-model="checkbox" />
@@ -73,20 +48,20 @@ const repeatPassword = ref("");
 const checkbox = ref(false);
 
 const authStore = useAuthStore();
-const { register } = authStore; 
+const { register } = authStore;
 const toast = useToast();
 
 function submitForm() {
-  if (checkbox.value && password.value === repeatPassword.value) {
-    register(email.value, FirstName.value, LastName.value, password.value)
-    .catch((error) => toast.error(error));
-  } else {
-    if (checkbox.value) {
-      alert('Passwords do not match!');
-    } else {
-      alert('Terms and privacy policy have not been accepted');
-    }
-  }
+   if (checkbox.value && password.value === repeatPassword.value) {
+      register(email.value, FirstName.value, LastName.value, password.value)
+         .catch((error) => toast.error(error));
+   } else {
+      if (checkbox.value) {
+         alert('Passwords do not match!');
+      } else {
+         alert('Terms and privacy policy have not been accepted');
+      }
+   }
 }
 </script>
 
@@ -96,11 +71,13 @@ function submitForm() {
    padding: 0;
    box-sizing: border-box;
 }
+
 .registerColumns {
    display: grid;
    grid-template-rows: 18% 10% 10% 10% 10% 10% 14%;
    height: 100%;
 }
+
 .createUsername,
 .typeEmail,
 .createPassword,
@@ -109,6 +86,7 @@ function submitForm() {
    justify-content: center;
    align-items: center;
    width: 100%;
+
    & input {
       width: 350px;
       height: 30px;
@@ -116,27 +94,33 @@ function submitForm() {
       padding-left: 20px;
       border: 2px solid black;
    }
+
    @media screen and (max-width: 480px) {
       scale: 0.8;
    }
 }
+
 .acceptStatute {
    display: flex;
    flex-direction: row;
    justify-content: center;
    align-items: baseline;
+
    & input {
       margin: 5px;
    }
+
    & p {
       margin-top: 4px;
    }
 }
+
 .createAccount {
    display: flex;
    justify-content: center;
    align-items: center;
    width: 100%;
+
    & button {
       width: 250px;
       height: 50px;
@@ -149,6 +133,7 @@ function submitForm() {
       cursor: pointer;
       transition: 0.1s ease-in-out;
    }
+
    & button:hover {
       font-size: 26px;
       background-color: rgba(0, 127, 218, 0.767);

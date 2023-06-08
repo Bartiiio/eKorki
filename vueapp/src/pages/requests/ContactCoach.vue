@@ -86,4 +86,12 @@ textarea:focus {
 .actions {
   text-align: center;
 }
+
+.description {
+  display: none;
+}
+
+button {
+  margin-top: 20px;
+}
 </style>
