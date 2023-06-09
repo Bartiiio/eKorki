@@ -83,6 +83,20 @@ button:active {
     display: inline-block;
 }
 
+.delete {
+    width: 15rem;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font: inherit;
+    background-color: red;
+    border: 1px solid red;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-right: 0;
+    display: inline-block;
+}
+
 .flat:hover,
 .flat:active,
 .outline:hover,

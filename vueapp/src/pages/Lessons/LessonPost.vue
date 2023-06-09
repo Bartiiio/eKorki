@@ -27,7 +27,7 @@ let options = ref([]);
    };
    await lessonStore.addNewLesson(lessonData);
    toast.success("Lesson added")
-   router.replace("/coaches");
+   router.replace("/coaches-lessons");
 }
  
 onBeforeMount(async () => {

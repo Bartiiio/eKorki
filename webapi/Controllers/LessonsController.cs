@@ -39,6 +39,26 @@ public class LessonsController : ControllerBase
         });
         return Ok(lessonsDTOs);
     }
+    
+    [HttpGet]
+    [Authorize]
+    [Route("user")]
+    public async Task<ActionResult<IEnumerable<LessonResponseDTO>>> GetUserLessons()
+    {
+        var email = User.FindFirstValue(ClaimTypes.Email);
+        var user = await _userManager.FindByEmailAsync(email);
+        var lessons = await _lessonRepository.GetByUserId(user.Id);
+        var lessonsDTOs = lessons.Select(lesson => new LessonResponseDTO()
+        {
+            Id = lesson.Id,
+            FirstName = lesson.User.FirstName,
+            LastName = lesson.User.LastName,
+            Description = lesson.Description,
+            LessonType = lesson.LessonType,
+            Price = lesson.Price
+        });
+        return Ok(lessonsDTOs);
+    }
 
     // GET: api/lessons/5
     [HttpGet("{id}")]
