@@ -115,17 +115,27 @@ public class LessonsController : ControllerBase
 
     // PUT: api/lessons/5
     [Authorize]
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateLesson(int id, Lesson lesson)
+    [HttpPut("update/{id}")]
+    public async Task<IActionResult> UpdateLesson(int id,[FromBody] LessonRequestDTO lessonRequestDto)
     {
-        if (id != lesson.Id)
+        if (id != lessonRequestDto.Id)
         {
             return BadRequest();
         }
+        var email = User.FindFirstValue(ClaimTypes.Email);
+        var user = await _userManager.FindByEmailAsync(email);
+        var lessonType = await _lessonTypeRepository.GetByIdAsync(lessonRequestDto.LessonTypeId);
+        var editedLesson = new Lesson()
+        {
+            Id = lessonRequestDto.Id,
+            Price = lessonRequestDto.Price,
+            Description = lessonRequestDto.Description,
+            User = user,
+            LessonType = lessonType
+        };
+        await _lessonRepository.UpdateAsync(editedLesson);
 
-        await _lessonRepository.UpdateAsync(lesson);
-
-        return NoContent();
+        return Ok();
     }
 
     // DELETE: api/lessons/5

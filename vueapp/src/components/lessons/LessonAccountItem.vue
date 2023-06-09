@@ -29,9 +29,6 @@
  <script setup>
 import { computed, defineProps } from 'vue';
 import { useLessonsStore } from '@/store';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 const lessonStore = useLessonsStore();
 const deleteLesson = async () => {
@@ -64,7 +61,7 @@ return props.firstName + " " + props.lastName;
 });
 
 const lessonDetailsLink = computed(() => {
-return router.path + "/" + props.id;
+return '/coaches-lessons/edit/' + props.id;
 });
  </script>
  

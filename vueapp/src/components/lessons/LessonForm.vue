@@ -21,7 +21,7 @@
                :value="option.value"
                :key="option.value"
             >
-               Angielski
+               {{ option.text }}
             </option>
          </select>
       </div>

@@ -35,5 +35,12 @@ export const useLessonsStore = defineStore({
             const newLesson = await fetchWrapper.post(`${lessonBaseUrl}`, lesson);
             this.lessons.push(newLesson);
         },
+        async putLesson(id, lesson) {
+            await fetchWrapper.put(`${lessonBaseUrl}/update/${id}`, lesson);
+            const lessonIndex = this.lessons.findIndex(lesson => lesson.id === id);
+            const userLessonIndex = this.userLessons.findIndex(lesson => lesson.id === id);
+            this.lessons[lessonIndex] = lesson;
+            this.userLessons[userLessonIndex] = lesson;
+        },
     }
 });

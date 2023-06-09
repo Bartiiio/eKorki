@@ -13,7 +13,7 @@ import CoachesAccountLessons from "./pages/coaches/CoachesAccountLessons.vue";
 import NotFound from "./pages/NotFound.vue";
 import WebRegulations from "./pages/WebRegulations.vue";
 import WebPolicy from "./pages/WebPolicy.vue";
-import CoachesLessoonEdit from "./pages/coaches/CoachesLessoonEdit.vue";
+import CoachesLessonEdit from "./pages/coaches/CoachesLessonEdit.vue";
 
 const router = createRouter({
    // tworze routera
@@ -32,6 +32,11 @@ const router = createRouter({
          component: ContactCoach,
          props: true,
       },
+      {
+         path: "/coaches-lessons/edit/:id",
+         component: CoachesLessonEdit,
+         props: true,
+      },
       { path: "/register", component: CoachesRegistration },
       { path: "/coaches-lessons/post", component: LessonPost },
       { path: "/login", component: CoachesLogin },
@@ -42,7 +47,6 @@ const router = createRouter({
       { path: "/:notFound(.*)", component: NotFound }, // bez względu co jest wpisane
       { path: "/regulamin", component: WebRegulations },
       { path: "/politykaprywatnosci", component: WebPolicy },
-      { path: "/lessonedit", component: CoachesLessoonEdit },
    ],
 });
 
