@@ -13,6 +13,7 @@ import CoachesAccountLessons from "./pages/coaches/CoachesAccountLessons.vue";
 import NotFound from "./pages/NotFound.vue";
 import WebRegulations from "./pages/WebRegulations.vue";
 import WebPolicy from "./pages/WebPolicy.vue";
+import CoachesLessoonEdit from "./pages/coaches/CoachesLessoonEdit.vue";
 
 const router = createRouter({
    // tworze routera
@@ -39,6 +40,7 @@ const router = createRouter({
       { path: "/:notFound(.*)", component: NotFound }, // bez względu co jest wpisane
       { path: "/regulamin", component: WebRegulations },
       { path: "/politykaprywatnosci", component: WebPolicy },
+      { path: "/lessonedit", component: CoachesLessoonEdit },
    ],
 });
 

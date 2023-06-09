@@ -5,20 +5,9 @@
       </section>
       <section>
          <base-card>
-            <div class="controls">
-               <<<<<<< HEAD
-               <base-button @click="refreshLessons" mode="outline"
-                  >Odśwież</base-button
-               >
-               <base-button v-if="isLoggedIn" mode="flat" link to="/post"
-                  >Dodaj ogłoszenie</base-button
-               >
-               =======
-               <base-button @click="refreshLessons" mode="outline"
-                  >Odśwież</base-button
-               >
-               >>>>>>> de82eaa6a4a9def0626a592536a49d6264829690
-            </div>
+            <base-button @click="refreshLessons" mode="outline"
+               >Odśwież</base-button
+            >
             <ul v-if="filteredLessons.length > 0">
                <lesson-item
                   v-for="lesson in paginatedFilteredLessons"
