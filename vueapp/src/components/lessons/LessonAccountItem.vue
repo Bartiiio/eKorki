@@ -29,10 +29,13 @@
  <script setup>
 import { computed, defineProps } from 'vue';
 import { useLessonsStore } from '@/store';
+import { useToast } from 'vue-toastification';
 
+const toast = useToast();
 const lessonStore = useLessonsStore();
 const deleteLesson = async () => {
-await lessonStore.deleteLesson(props.id);
+    await lessonStore.deleteLesson(props.id);
+    toast.success("lesson deleted")
 }
 const props = defineProps({
     id: {
