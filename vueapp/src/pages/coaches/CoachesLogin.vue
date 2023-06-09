@@ -8,13 +8,24 @@
                   <h2>Dołącz do nas i znajdz korepetytora!</h2>
                </div>
                <div class="inputEmail">
-                  <input v-model.trim="email" class="email" type="email" placeholder="E-mail" required />
+                  <input
+                     v-model.trim="email"
+                     class="email"
+                     type="email"
+                     placeholder="E-mail"
+                     required
+                  />
                </div>
                <div class="passwordInput">
-                  <input v-model.trim="password" class="password" type="password" placeholder="Hasło" required />
+                  <input
+                     v-model.trim="password"
+                     class="password"
+                     type="password"
+                     placeholder="Hasło"
+                     required
+                  />
                </div>
-               <div class="rememberAndForget">
-               </div>
+               <div class="rememberAndForget"></div>
                <div class="logIn">
                   <button type="submit">Zaloguj się</button>
                </div>
@@ -31,19 +42,20 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/store';
-import { ref } from 'vue';
+import { useAuthStore } from "@/store";
+import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
-const email = ref('');
-const password = ref('');
+const email = ref("");
+const password = ref("");
 const authStore = useAuthStore();
 const { login } = authStore;
 const toast = useToast();
 
 function onSubmit() {
-   return login(email.value, password.value)
-      .catch(error => toast.error(error));
+   return login(email.value, password.value).catch((error) =>
+      toast.error(error)
+   );
 }
 </script>
 
@@ -77,9 +89,11 @@ function onSubmit() {
    height: 500px;
    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
    border-radius: 20px;
-   background: radial-gradient(circle,
-         rgba(75, 197, 152, 0.555) 0%,
-         rgba(75, 197, 152, 0.795) 100%);
+   background: radial-gradient(
+      circle,
+      rgba(75, 197, 152, 0.555) 0%,
+      rgba(75, 197, 152, 0.795) 100%
+   );
 }
 
 form {
@@ -90,6 +104,7 @@ form {
    display: grid;
    grid-template-rows: 100px 1fr 1fr 40px 1fr 1fr;
    height: 100%;
+   font-size: 16px;
 }
 
 .zalogujsie {
@@ -131,6 +146,7 @@ form {
    border-radius: 50px;
    padding-left: 20px;
    border: 2px solid black;
+   font-size: 18px;
 }
 
 .password {
@@ -139,6 +155,7 @@ form {
    border-radius: 50px;
    padding-left: 20px;
    border: 2px solid black;
+   font-size: 18px;
 }
 
 .rememberAndForget {
@@ -198,4 +215,5 @@ form {
 .signIn p {
    margin-right: 15px;
    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}</style>
+}
+</style>

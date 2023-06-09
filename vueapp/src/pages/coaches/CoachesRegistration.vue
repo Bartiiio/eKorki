@@ -8,19 +8,44 @@
                   <h2>Dołącz do nas i znajdź korepetytora!</h2>
                </div>
                <div class="createUsername">
-                  <input type="text" v-model.trim="FirstName" placeholder="Imię" required />
+                  <input
+                     type="text"
+                     v-model.trim="FirstName"
+                     placeholder="Imię"
+                     required
+                  />
                </div>
                <div class="createUsername">
-                  <input type="text" v-model.trim="LastName" placeholder="Nazwisko" required />
+                  <input
+                     type="text"
+                     v-model.trim="LastName"
+                     placeholder="Nazwisko"
+                     required
+                  />
                </div>
                <div class="typeEmail">
-                  <input type="email" v-model.trim="email" placeholder="E-mail" required />
+                  <input
+                     type="email"
+                     v-model.trim="email"
+                     placeholder="E-mail"
+                     required
+                  />
                </div>
                <div class="createPassword">
-                  <input type="password" v-model.trim="password" placeholder="Hasło" required />
+                  <input
+                     type="password"
+                     v-model.trim="password"
+                     placeholder="Hasło"
+                     required
+                  />
                </div>
                <div class="repeatPassword">
-                  <input type="password" v-model.trim="repeatPassword" placeholder="Powtórz hasło" required />
+                  <input
+                     type="password"
+                     v-model.trim="repeatPassword"
+                     placeholder="Powtórz hasło"
+                     required
+                  />
                </div>
                <div class="acceptStatute">
                   <input type="checkbox" v-model="checkbox" />
@@ -36,8 +61,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useAuthStore } from '@/store';
+import { ref } from "vue";
+import { useAuthStore } from "@/store";
 import { useToast } from "vue-toastification";
 
 const FirstName = ref("");
@@ -53,13 +78,17 @@ const toast = useToast();
 
 function submitForm() {
    if (checkbox.value && password.value === repeatPassword.value) {
-      register(email.value, FirstName.value, LastName.value, password.value)
-         .catch((error) => toast.error(error));
+      register(
+         email.value,
+         FirstName.value,
+         LastName.value,
+         password.value
+      ).catch((error) => toast.error(error));
    } else {
       if (checkbox.value) {
-         alert('Passwords do not match!');
+         alert("Passwords do not match!");
       } else {
-         alert('Terms and privacy policy have not been accepted');
+         alert("Terms and privacy policy have not been accepted");
       }
    }
 }
@@ -89,10 +118,11 @@ function submitForm() {
 
    & input {
       width: 350px;
-      height: 30px;
+      height: 40px;
       border-radius: 50px;
       padding-left: 20px;
       border: 2px solid black;
+      font-size: 18px;
    }
 
    @media screen and (max-width: 480px) {

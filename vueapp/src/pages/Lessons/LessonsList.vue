@@ -6,7 +6,9 @@
       <section>
          <base-card>
             <div class="controls">
-               <base-button @click="refreshLessons" mode="outline">Odśwież</base-button>
+               <base-button @click="refreshLessons" mode="outline"
+                  >Odśwież</base-button
+               >
                <base-button v-if="isLoggedIn" mode="flat" link to="/post"
                   >Dodaj ogłoszenie</base-button
                >
@@ -23,11 +25,11 @@
                ></lesson-item>
                <div class="pagination-wrapper">
                   <vue-awesome-paginate
-                  :total-items="filteredLessons.length"
-                  :items-per-page="itemsPerPage"
-                  :max-pages-shown="10"
-                  v-model="currentPage"
-                  :on-click="onClickHandler"
+                     :total-items="filteredLessons.length"
+                     :items-per-page="itemsPerPage"
+                     :max-pages-shown="10"
+                     v-model="currentPage"
+                     :on-click="onClickHandler"
                   />
                </div>
             </ul>
@@ -38,6 +40,7 @@
 </template>
 
 <script setup>
+/* eslint-disable vue/no-side-effects-in-computed-properties */
 import { ref, onMounted, computed } from "vue";
 import LessonItem from "../../components/lessons/LessonItem.vue";
 import LessonFilter from "../../components/lessons/LessonFilter.vue";
@@ -61,10 +64,13 @@ const activeFilters = ref({
 });
 
 const onClickHandler = (page) => {
-      const index = page - 1;
-      const start = index * itemsPerPage;
-      paginatedFilteredLessons.value = filteredLessons.value.slice(start, start + itemsPerPage);
-  };
+   const index = page - 1;
+   const start = index * itemsPerPage;
+   paginatedFilteredLessons.value = filteredLessons.value.slice(
+      start,
+      start + itemsPerPage
+   );
+};
 
 const setFilters = (updatedFilters) => {
    activeFilters.value = updatedFilters;
@@ -124,7 +130,7 @@ const filteredLessons = computed(() => {
    });
    paginatedFilteredLessons.value = filtered.slice(0, itemsPerPage);
    currentPage.value = 1;
-   return  filtered
+   return filtered;
 });
 
 async function fetchLessons() {
@@ -138,7 +144,7 @@ async function refreshLessons() {
 
 onMounted(async () => {
    if (lessonStore.lessons.length === 0) {
-      await fetchLessons()
+      await fetchLessons();
    }
    lessons.value = lessonStore.lessons;
 });
@@ -166,27 +172,27 @@ ul {
    margin-top: 20px;
 }
 .pagination-container {
-    display: flex;
-    column-gap: 10px;
-  }
-  .paginate-buttons {
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: rgb(242, 242, 242);
-    border: 1px solid rgb(217, 217, 217);
-    color: black;
-  }
-  .paginate-buttons:hover {
-    background-color: #d8d8d8;
-  }
-  .active-page {
-    background-color: #3498db;
-    border: 1px solid #3498db;
-    color: white;
-  }
-  .active-page:hover {
-    background-color: #2988c8;
-  }
+   display: flex;
+   column-gap: 10px;
+}
+.paginate-buttons {
+   height: 40px;
+   width: 40px;
+   border-radius: 20px;
+   cursor: pointer;
+   background-color: rgb(242, 242, 242);
+   border: 1px solid rgb(217, 217, 217);
+   color: black;
+}
+.paginate-buttons:hover {
+   background-color: #d8d8d8;
+}
+.active-page {
+   background-color: #3498db;
+   border: 1px solid #3498db;
+   color: white;
+}
+.active-page:hover {
+   background-color: #2988c8;
+}
 </style>
