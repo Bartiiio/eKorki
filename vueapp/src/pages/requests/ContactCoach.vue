@@ -19,11 +19,13 @@
 import { ref } from 'vue';
 import { useCoachStore } from '@/store/coaches.store';
 import { useRoute, useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
 
 const router = useRouter()
 const route = useRoute();
 const coachStore = useCoachStore();
 const { contactCoach } = coachStore;
+const toast = useToast();
 
 const email = ref('');
 const message = ref('');
@@ -40,6 +42,7 @@ const submitForm = () => {
     message: message.value,
     coachId: route.id
   });
+  toast.success("message sent")
   router.replace('/coaches');
 }
 </script>

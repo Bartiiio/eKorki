@@ -5,9 +5,11 @@
       </section>
       <section>
          <base-card>
-            <base-button @click="refreshLessons" mode="outline"
-               >Odśwież</base-button
-            >
+            <div class="controls">
+               <base-button @click="refreshLessons" mode="outline"
+                  >Odśwież</base-button
+               >
+            </div>
             <ul v-if="filteredLessons.length > 0">
                <lesson-item
                   v-for="lesson in paginatedFilteredLessons"
