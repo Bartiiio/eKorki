@@ -1,7 +1,7 @@
 <template>
    <div class="editpost">
       <h1>Edytuj swoje ogłoszenie</h1>
-      <form action="" class="formedit">
+      <form @submit.prevent="saveData" class="formedit">
          <div class="textarea">
             <label for="">Opis ogłoszenia:</label>
             <textarea v-model="activeLesson.description" name="" id="" cols="10" rows="5"></textarea>
@@ -20,7 +20,7 @@
                </option>
             </select>
          </div>
-         <base-button @click="saveData">Zatwierdź </base-button>
+         <base-button>Zatwierdź </base-button>
       </form>
    </div>
 </template>
@@ -45,9 +45,10 @@ async function saveData() {
       price: activeLesson.value.price,
       LessonTypeId: activeLesson.value.lessonType.id,
    };
+
    await lessonStore.putLesson(props.id, lessonData);
    toast.success("Lesson successfully edited")
-   router.push("/");
+   router.push("/coaches-lessons");
 }
  
 onBeforeMount(async () => {
