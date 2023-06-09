@@ -6,7 +6,11 @@
       <div class="userPanel__content">
          <div class="userPanel__section">
             <ul class="userPanel__optionsList">
-               <li class="userPanel__option">Moje ogłoszenia</li>
+               <router-link to="/coaches-lessons">
+                  <li class="userPanel__option">
+                        Moje ogłoszenia
+                  </li>
+               </router-link>
             </ul>
             <button @click="deleteAccount" class="userPanel__deleteButton">Usuń konto</button>
          </div>
@@ -68,6 +72,10 @@ const { user } = storeToRefs(authStore)
    display: flex;
    flex-direction: column-reverse;
    align-items: center;
+   & a {
+      text-decoration: none;
+      color: inherit;
+   }
 }
 
 .userPanel__option {

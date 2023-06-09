@@ -9,7 +9,8 @@ export const useLessonsStore = defineStore({
     id: 'lessons',
     state: () => ({
         lessonTypes: [],
-        lessons: []
+        lessons: [],
+        userLessons: []
     }),
     actions: {
         async fetchLessonTypes() {
@@ -19,8 +20,16 @@ export const useLessonsStore = defineStore({
         async getAllLessons() {
             this.lessons = await fetchWrapper.get(lessonBaseUrl);
         },
+        async getUserLessons() {
+            this.userLessons = await fetchWrapper.get(`${lessonBaseUrl}/user`);
+        },
         async getLesson(id) {
             return await fetchWrapper.get(`${lessonBaseUrl}/${id}`);
+        },
+        async deleteLesson(id) {
+            await fetchWrapper.delete(`${lessonBaseUrl}/${id}`);
+            this.lessons = this.lessons.filter(lesson => lesson.id !== id);
+            this.userLessons = this.userLessons.filter(lesson => lesson.id !== id);
         },
         async addNewLesson(lesson) {
             const newLesson = await fetchWrapper.post(`${lessonBaseUrl}`, lesson);

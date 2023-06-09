@@ -6,12 +6,16 @@
       <section>
          <base-card>
             <div class="controls">
+<<<<<<< HEAD
                <base-button @click="refreshLessons" mode="outline"
                   >Odśwież</base-button
                >
                <base-button v-if="isLoggedIn" mode="flat" link to="/post"
                   >Dodaj ogłoszenie</base-button
                >
+=======
+               <base-button @click="refreshLessons" mode="outline">Odśwież</base-button>
+>>>>>>> de82eaa6a4a9def0626a592536a49d6264829690
             </div>
             <ul v-if="filteredLessons.length > 0">
                <lesson-item
@@ -44,15 +48,13 @@
 import { ref, onMounted, computed } from "vue";
 import LessonItem from "../../components/lessons/LessonItem.vue";
 import LessonFilter from "../../components/lessons/LessonFilter.vue";
-import { useAuthStore, useLessonsStore } from "@/store";
+import { useLessonsStore } from "@/store";
 import { storeToRefs } from "pinia";
 const currentPage = ref(1);
 const itemsPerPage = 5;
 const paginatedFilteredLessons = ref([]);
-const authStore = useAuthStore();
 const lessonStore = useLessonsStore();
-const { isLoggedIn } = storeToRefs(authStore);
-const lessons = ref([]);
+const { lessons } = storeToRefs(lessonStore);
 const activeFilters = ref({
    matematyka: false,
    geografia: false,
@@ -76,7 +78,7 @@ const setFilters = (updatedFilters) => {
    activeFilters.value = updatedFilters;
 };
 
-const filteredLessons = computed(() => {
+const updateFilteredLessons = () => {
    if (
       !activeFilters.value.matematyka &&
       !activeFilters.value.geografia &&
@@ -130,7 +132,15 @@ const filteredLessons = computed(() => {
    });
    paginatedFilteredLessons.value = filtered.slice(0, itemsPerPage);
    currentPage.value = 1;
+<<<<<<< HEAD
    return filtered;
+=======
+   return  filtered
+};
+
+const filteredLessons = computed(() => {
+   return updateFilteredLessons();
+>>>>>>> de82eaa6a4a9def0626a592536a49d6264829690
 });
 
 async function fetchLessons() {
@@ -146,7 +156,6 @@ onMounted(async () => {
    if (lessonStore.lessons.length === 0) {
       await fetchLessons();
    }
-   lessons.value = lessonStore.lessons;
 });
 </script>
 
